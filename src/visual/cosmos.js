@@ -38,7 +38,7 @@ function moonTexture() {
 
 /**
  * LIVING COSMOS v5
- * - tuzes nap (csÃ³vÃ¡k NÃ‰LKÃœL, csak lobogo korona)
+ * - tuzes nap (csÃƒÂ³vÃƒÂ¡k NÃƒâ€°LKÃƒÅ“L, csak lobogo korona)
  * - krateres hold
  * - villogo csillagok
  * - ASZTEROIDAK: teljes feluletrol, minden iranybol, LASSAN
@@ -125,13 +125,13 @@ export function createCosmos(scene) {
     return new THREE.Points(geo, mat);
   }
 
-  const starsFar = buildStars(2600, 60, 190, 1.35);
-  const starsNear = buildStars(1000, 30, 90, 0.85);
+  const starsFar = buildStars(5200, 60, 190, 1.35);
+  const starsNear = buildStars(2200, 30, 90, 0.85);
   group.add(starsFar, starsNear);
 
   /* ---------- SPIRALGALAXIS (tavol, lassan forog) ---------- */
   function buildGalaxy() {
-    const count = 2400;
+    const count = 4200;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const arms = 3;
@@ -141,7 +141,7 @@ export function createCosmos(scene) {
     for (let i = 0; i < count; i++) {
       const arm = i % arms;
       const tt = Math.pow(Math.random(), 1.6);
-      const r = 1.6 + tt * 34;
+      const r = 1.6 + tt * 52;
       const angle = arm * (Math.PI * 2 / arms) + tt * 4.4 + (Math.random() - 0.5) * 0.38;
       positions[i * 3]     = Math.cos(angle) * r + (Math.random() - 0.5) * 1.4;
       positions[i * 3 + 1] = (Math.random() - 0.5) * (2.4 - tt * 1.6);
@@ -155,7 +155,7 @@ export function createCosmos(scene) {
     geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const mat = new THREE.PointsMaterial({
-      size: 0.27, transparent: true, opacity: 0.85,
+      size: 0.24, transparent: true, opacity: 0.85,
       blending: THREE.AdditiveBlending, depthWrite: false,
       vertexColors: true, fog: false,
     });
