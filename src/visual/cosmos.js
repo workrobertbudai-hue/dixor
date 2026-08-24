@@ -38,7 +38,7 @@ function moonTexture() {
 
 /**
  * LIVING COSMOS v5
- * - tuzes nap (csÃƒÆ’Ã‚Â³vÃƒÆ’Ã‚Â¡k NÃƒÆ’Ã¢â‚¬Â°LKÃƒÆ’Ã…â€œL, csak lobogo korona)
+ * - tuzes nap (csÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³vÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡k NÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°LKÃƒÆ’Ã†â€™Ãƒâ€¦Ã¢â‚¬Å“L, csak lobogo korona)
  * - krateres hold
  * - villogo csillagok
  * - ASZTEROIDAK: teljes feluletrol, minden iranybol, LASSAN
@@ -131,7 +131,7 @@ export function createCosmos(scene) {
 
   /* ---------- SPIRALGALAXIS (tavol, lassan forog) ---------- */
   function buildGalaxy() {
-    const count = 5400;
+    const count = 7600;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const arms = 3;
@@ -141,7 +141,7 @@ export function createCosmos(scene) {
     for (let i = 0; i < count; i++) {
       const arm = i % arms;
       const tt = Math.pow(Math.random(), 1.6);
-      const r = 1.6 + tt * 78;
+      const r = 1.6 + tt * 156;
       const angle = arm * (Math.PI * 2 / arms) + tt * 4.4 + (Math.random() - 0.5) * 0.38;
       positions[i * 3]     = Math.cos(angle) * r + (Math.random() - 0.5) * 1.4;
       positions[i * 3 + 1] = (Math.random() - 0.5) * (2.4 - tt * 1.6);
@@ -161,7 +161,7 @@ export function createCosmos(scene) {
     });
 
     const pts = new THREE.Points(geo, mat);
-    pts.position.set(0, 4, -165);
+    pts.position.set(0, 10, -210);
     pts.rotation.z = 0.55;
     pts.rotation.x = 0.4;
 
