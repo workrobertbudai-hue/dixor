@@ -55,8 +55,9 @@ export class ModuleWorld {
       n.mesh.rotation.y += dt * 0.9;
       n.ring.rotation.z += dt * 0.6;
 
-      if (n.bornAt < 0) n.bornAt = t;
-      const age = Math.min(1, (t - n.bornAt) / 0.9);
+      if (n.bornAt === undefined || n.bornAt === null || n.bornAt < 0) n.bornAt = t;
+      const ageRaw = (t - n.bornAt) / 0.9;
+      const age = !isFinite(ageRaw) ? 1 : (ageRaw >= 1 ? 1 : (ageRaw > 0 ? ageRaw : 0));
       const born = age * age * (3 - 2 * age);
       const targetScale = ((n.isHovered ? 1.65 : 1) + n.pulse * 0.6) * (0.2 + 0.8 * born);
       n.scaleCur += (targetScale - n.scaleCur) * Math.min(1, dt * 10);

@@ -1,4 +1,4 @@
-﻿import * as THREE from 'three';
+import * as THREE from 'three';
 import { createGlow } from '../visual/glow.js';
 
 /**
@@ -61,6 +61,7 @@ export function createFunctionNodes(moduleDef) {
       ring,
       halo,
       phase: i * 1.7,
+      bornAt: -1,
       isHovered: false,
       pulse: 0,
       scaleCur: 1,
