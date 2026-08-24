@@ -1733,3 +1733,7 @@ body.dx-quiet .dx-dwell { opacity: 0; }
 }
 @keyframes dx-tspin { to { transform: rotate(360deg); } }
 body.dx-quiet .dx-nlabel, body.dx-quiet .dx-target { opacity: 0 !important; }
+/* ---- presence-pill-removed: regi also pill veglegesen eltuntetve ---- */
+.dx-presence {
+  display: none !important;
+}
