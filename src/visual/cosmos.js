@@ -38,7 +38,7 @@ function moonTexture() {
 
 /**
  * LIVING COSMOS v5
- * - tuzes nap (csÃƒÂ³vÃƒÂ¡k NÃƒâ€°LKÃƒÅ“L, csak lobogo korona)
+ * - tuzes nap (csÃƒÆ’Ã‚Â³vÃƒÆ’Ã‚Â¡k NÃƒÆ’Ã¢â‚¬Â°LKÃƒÆ’Ã…â€œL, csak lobogo korona)
  * - krateres hold
  * - villogo csillagok
  * - ASZTEROIDAK: teljes feluletrol, minden iranybol, LASSAN
@@ -131,7 +131,7 @@ export function createCosmos(scene) {
 
   /* ---------- SPIRALGALAXIS (tavol, lassan forog) ---------- */
   function buildGalaxy() {
-    const count = 4200;
+    const count = 5400;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const arms = 3;
@@ -141,7 +141,7 @@ export function createCosmos(scene) {
     for (let i = 0; i < count; i++) {
       const arm = i % arms;
       const tt = Math.pow(Math.random(), 1.6);
-      const r = 1.6 + tt * 52;
+      const r = 1.6 + tt * 78;
       const angle = arm * (Math.PI * 2 / arms) + tt * 4.4 + (Math.random() - 0.5) * 0.38;
       positions[i * 3]     = Math.cos(angle) * r + (Math.random() - 0.5) * 1.4;
       positions[i * 3 + 1] = (Math.random() - 0.5) * (2.4 - tt * 1.6);
@@ -155,7 +155,7 @@ export function createCosmos(scene) {
     geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const mat = new THREE.PointsMaterial({
-      size: 0.24, transparent: true, opacity: 0.85,
+      size: 0.21, transparent: true, opacity: 0.85,
       blending: THREE.AdditiveBlending, depthWrite: false,
       vertexColors: true, fog: false,
     });
@@ -243,16 +243,16 @@ export function createCosmos(scene) {
     const g = new THREE.Group();
     g.add(new THREE.Mesh(new THREE.SphereGeometry(0.3, 8, 8),
       new THREE.MeshBasicMaterial({ color: 0xfff2d8, fog: false })));
-    const tg = new THREE.ConeGeometry(0.2, 7, 8, 1, true);
+    const tg = new THREE.ConeGeometry(0.28, 13, 8, 1, true);
     const tm = new THREE.MeshBasicMaterial({
-      color: 0xffd9a0, transparent: true, opacity: 0.55,
+      color: 0xffe4b8, transparent: true, opacity: 0.85,
       blending: THREE.AdditiveBlending, depthWrite: false,
       side: THREE.DoubleSide, fog: false,
     });
     const tr = new THREE.Mesh(tg, tm);
-    tr.rotation.x = Math.PI / 2; tr.position.z = 3.5;
+    tr.rotation.x = Math.PI / 2; tr.position.z = 6.5;
     g.add(tr);
-    g.position.set((Math.random() > 0.5 ? 1 : -1) * 70, (Math.random() - 0.2) * 26, -(24 + Math.random() * 34));
+    g.position.set((Math.random() > 0.5 ? 1 : -1) * 64, 2 + Math.random() * 16, -(16 + Math.random() * 28));
     const dir = new THREE.Vector3(
       (Math.random() > 0.5 ? -1 : 1) * (0.85 + Math.random() * 0.25),
       -(0.15 + Math.random() * 0.25), 0.05).normalize();
@@ -269,7 +269,7 @@ export function createCosmos(scene) {
   function scheduleMeteor() {
     spawnMeteor();
     if (Math.random() > 0.6) spawnMeteor();
-    setTimeout(scheduleMeteor, 16000 + Math.random() * 18000);
+    setTimeout(scheduleMeteor, 7000 + Math.random() * 6000);
   }
   setTimeout(scheduleMeteor, 12000);
 
@@ -312,7 +312,7 @@ export function createCosmos(scene) {
     }
 
     for (let i = meteors.length - 1; i >= 0; i--) {
-      meteors[i].position.addScaledVector(meteors[i].userData.dir, dt * 46);
+      meteors[i].position.addScaledVector(meteors[i].userData.dir, dt * 26);
     }
   }
 
