@@ -44,6 +44,7 @@ export function setupRouter(app) {
       case 'create:writing': app.createView.open('scratch'); return true;
       case 'create:images': app.createView.open('board'); return true;
     }
+    if (typeof fid === 'string' && fid.startsWith('explore:')) { app.exploreView.open(); return true; }
     const parts = fid.split(':');
     const mod = parts[0];
     const slug = parts[1] || '';

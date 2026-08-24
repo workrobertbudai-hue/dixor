@@ -1505,3 +1505,19 @@ body.dx-quiet .dx-zoom { opacity: 0; }
 
 .dx-cstep__body .dx-btn { margin-top: 8px; padding: 6px 12px; font-size: 8.5px; }
 .dx-cstep.is-done .dx-cstep__body b { text-decoration: line-through; opacity: 0.65; }
+/* ---- Explore ---- */
+.dx-exseed {
+  border-left: 2px solid rgba(111,201,255,0.5);
+  background: rgba(111,201,255,0.04);
+  padding: 11px 13px;
+  margin-bottom: 10px;
+}
+.dx-exseed em {
+  font-style: normal;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  color: #6fc9ff;
+}
+.dx-exseed p { margin: 5px 0 0; font-size: 12px; line-height: 1.6; color: var(--dx-text); letter-spacing: 0.04em; }
+.dx-life__note small { color: var(--dx-text-dim); font-size: 8px; letter-spacing: 0.14em; margin-left: 8px; }
+.dx-life__note i { font-style: normal; color: #6fc9ff; font-size: 9px; letter-spacing: 0.16em; }

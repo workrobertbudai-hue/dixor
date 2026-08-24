@@ -1,0 +1,61 @@
+{
+  "version": "0.1.0",
+  "interests": [
+    {
+      "id": "tech",
+      "label": "TECHNOLOGY",
+      "seeds": [
+        { "kind": "WHY", "q": "Why did graphics cards become the engine of artificial intelligence?", "link": "nvidia" },
+        { "kind": "WHAT IF", "q": "What if conversational AI had arrived a decade earlier?", "link": "openai" },
+        { "kind": "WHY", "q": "Why does 3D in a browser work at all?", "link": "three-js" },
+        { "kind": "HOW", "q": "How does error correction decide the future of quantum machines?", "link": "quantum-computing" }
+      ]
+    },
+    {
+      "id": "space",
+      "label": "SPACE",
+      "seeds": [
+        { "kind": "WHY", "q": "Why do we build telescopes instead of visiting?", "link": null },
+        { "kind": "WHAT IF", "q": "What if Mars had kept its magnetic field?", "link": null },
+        { "kind": "HOW", "q": "How does a probe phone home from billions of kilometers?", "link": null },
+        { "kind": "WHY", "q": "Why are galaxies spiral-shaped so often?", "link": null }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "HISTORY",
+      "seeds": [
+        { "kind": "WHY", "q": "Why did container shipping change world trade forever?", "link": null },
+        { "kind": "WHAT IF", "q": "What if the printing press had spread east first?", "link": null },
+        { "kind": "HOW", "q": "How did night trains shape Europe before flights?", "link": null }
+      ]
+    },
+    {
+      "id": "design",
+      "label": "DESIGN",
+      "seeds": [
+        { "kind": "WHY", "q": "Why does calm design feel more trustworthy than loud design?", "link": null },
+        { "kind": "HOW", "q": "How does one typeface carry an entire identity?", "link": null },
+        { "kind": "WHAT IF", "q": "What if interfaces were spaces instead of pages?", "link": null }
+      ]
+    },
+    {
+      "id": "nature",
+      "label": "NATURE",
+      "seeds": [
+        { "kind": "WHY", "q": "Why do octopuses edit their own genes?", "link": null },
+        { "kind": "HOW", "q": "How do forests share nutrients underground?", "link": null },
+        { "kind": "WHAT IF", "q": "What if pollinators disappeared within a year?", "link": null }
+      ]
+    },
+    {
+      "id": "mind",
+      "label": "MIND & LEARNING",
+      "seeds": [
+        { "kind": "WHY", "q": "Why do short daily sessions beat long marathons?", "link": null },
+        { "kind": "HOW", "q": "How does sleep turn practice into memory?", "link": null },
+        { "kind": "WHAT IF", "q": "What if curiosity were treated as a skill, not a trait?", "link": null }
+      ]
+    }
+  ]
+}

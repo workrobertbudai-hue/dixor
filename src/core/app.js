@@ -35,6 +35,7 @@ import { AnalyzeView } from '../ui/analyze-view.js';
 import { EmployerInsightView } from '../ui/employer-view.js';
 import { InterviewView } from '../ui/interview-view.js';
 import { CareerView } from '../ui/career-view.js';
+import { ExploreView } from '../ui/explore-view.js';
 import { LifeView } from '../ui/life-view.js';
 import { CreateView } from '../ui/create-view.js';
 import { Router } from '../router/router.js';
@@ -107,6 +108,7 @@ export class App {
     this.employerView = new EmployerInsightView({ stateStore: this.stateStore });
     this.interviewView = new InterviewView({ stateStore: this.stateStore });
     this.careerView = new CareerView({ stateStore: this.stateStore });
+    this.exploreView = new ExploreView({ stateStore: this.stateStore });
     this.lifeView = new LifeView({ stateStore: this.stateStore });
     this.createView = new CreateView({ stateStore: this.stateStore });
 
@@ -128,7 +130,8 @@ export class App {
       this.createView,
       this.employerView,
       this.interviewView,
-      this.careerView
+      this.careerView,
+      this.exploreView
     );
 
     this.breadcrumbs = new Breadcrumbs({
@@ -201,6 +204,7 @@ export class App {
           if (def.id === 'work:career-path') { Router.push({view:'module',module:'work',fn:'career-path'}); this.careerView.open(); return; }
           if (def.id === 'work:interview-preparation') { Router.push({view:'module',module:'work',fn:'interview-preparation'}); this.interviewView.open(); return; }
           if (def.id === 'work:employer-insight') { Router.push({view:'module',module:'work',fn:'employer-insight'}); this.employerView.open(); return; }
+          if (def.id.startsWith('explore:') && def.id !== 'explore:community-chat') { Router.push({view:'module',module:'explore'}); this.exploreView.open(); return; }
           if (def.id.endsWith(':community-chat')) { this.chatView.open(def.moduleId); return; }
           this.actionPanel.show(def, getModuleById(def.moduleId));
         } else {

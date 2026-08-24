@@ -37,3 +37,6 @@ BACK TO CORE    return home anytime
 - WELLBEING: 60-second reset, 4-7-8 breathing, Quiet Mode
 - Explained matching (why-this-job reasons), trust notes, potential-first
   employer flags - concept philosophy, working prototype
+## Live
+
+https://dixor.onrender.com
