@@ -13,6 +13,7 @@ import { RaycasterService } from '../interaction/raycaster.js';
 import { HoverController } from '../interaction/hover.js';
 import { ClickController } from '../interaction/click.js';
 import { ZoomController } from '../interaction/zoom.js';
+import { OrbitController } from '../interaction/orbit.js';
 import { NodeLabel } from '../ui/node-label.js';
 import { WelcomeScreen } from '../ui/welcome-screen.js';
 import { SearchInterface } from '../ui/search-interface.js';
@@ -156,6 +157,7 @@ export class App {
 
     this.mouse = new Mouse(this.renderer.domElement);
     this.zoomCtl = new ZoomController(this);
+    this.orbitCtl = new OrbitController(this);
     this.raycaster = new RaycasterService();
     this.label = new NodeLabel();
     this.hover = new HoverController({ dom: this.renderer.domElement, label: this.label });

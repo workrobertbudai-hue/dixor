@@ -1,0 +1,59 @@
+import * as THREE from 'three';
+
+/**
+ * ORBIT CONTROLLER - jobb gombos huzasra korbennezunk a nezesi cel korul.
+ * A szoget mindig az aktualis kamera-allapotbol szamoljuk, ezert
+ * vilagvaltas/zoom utan is pontosan mukodik.
+ */
+export class OrbitController {
+  constructor(app) {
+    this.app = app;
+    const dom = app.renderer.domElement;
+
+    this.dragging = false;
+    this.px = 0;
+    this.py = 0;
+    const sph = new THREE.Spherical();
+    const dir = new THREE.Vector3();
+
+    /* sajat menut nem akarjuk a canvason */
+    dom.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    dom.addEventListener('pointerdown', (e) => {
+      if (e.button !== 2) return;
+      const nav = app.navigation;
+      if (nav && nav.state === 'traveling') return;
+      this.dragging = true;
+      this.px = e.clientX;
+      this.py = e.clientY;
+      dom.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!this.dragging) return;
+      const dx = e.clientX - this.px;
+      const dy = e.clientY - this.py;
+      this.px = e.clientX;
+      this.py = e.clientY;
+
+      const a = this.app;
+      if (!a.camera || !a.transition) return;
+      const look = a.transition.lookTarget;
+      dir.copy(a.camera.position).sub(look);
+      if (dir.lengthSq() < 0.000001) dir.set(0, 0, 1);
+      sph.setFromVector3(dir);
+      sph.theta -= dx * 0.0045;
+      sph.phi = THREE.MathUtils.clamp(sph.phi - dy * 0.0045, 0.12, Math.PI - 0.45);
+      dir.setFromSpherical(sph);
+      a.camera.position.copy(look).add(dir);
+      a.camera.lookAt(look);
+    });
+
+    window.addEventListener('pointerup', (e) => {
+      if (e.button !== 2 || !this.dragging) return;
+      this.dragging = false;
+      dom.style.cursor = '';
+    });
+  }
+}
