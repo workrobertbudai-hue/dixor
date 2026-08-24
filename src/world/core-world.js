@@ -65,18 +65,29 @@ export class CoreWorld {
       this.group.add(s);
     }
 
-    /* energiapulzus lovesse (ritka) */
-    this.pulseWave = new THREE.Mesh(
-      new THREE.SphereGeometry(4.5, 32, 32),
+    /* energiapulzus: lezeres lokeshullam (ket eles gyuru) */
+    this.pulseRingA = new THREE.Mesh(
+      new THREE.TorusGeometry(4.5, 0.045, 10, 160),
       new THREE.MeshBasicMaterial({
         color: 0x8ff0ff, transparent: true, opacity: 0,
-        blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide,
+        blending: THREE.AdditiveBlending, depthWrite: false,
       })
     );
+    this.pulseRingA.rotation.x = Math.PI / 2;
+
+    this.pulseRingB = new THREE.Mesh(
+      new THREE.TorusGeometry(4.5, 0.035, 10, 160),
+      new THREE.MeshBasicMaterial({
+        color: 0x9d8cff, transparent: true, opacity: 0,
+        blending: THREE.AdditiveBlending, depthWrite: false,
+      })
+    );
+    this.pulseRingB.rotation.x = Math.PI / 2.6;
+    this.pulseRingB.rotation.y = 0.4;
     this.pulseT = 999;
     this.nextPulse = 5 + Math.random() * 4;
 
-    this.group.add(this.core, this.shell, this.shell2, this.ringA, this.ringB, this.heartGlow, this.aura, this.pulseWave);
+    this.group.add(this.core, this.shell, this.shell2, this.ringA, this.ringB, this.heartGlow, this.aura, this.pulseRingA, this.pulseRingB);
   }
 
   update(dt, elapsed) {
@@ -116,12 +127,16 @@ export class CoreWorld {
       this.pulseT = 0;
       this.nextPulse = 6 + Math.random() * 5;
     }
-    if (this.pulseT < 2.2) {
-      const k = this.pulseT / 2.2;
-      this.pulseWave.scale.setScalar(1 + k * 2.6);
-      this.pulseWave.material.opacity = 0.28 * (1 - k);
+    if (this.pulseT < 2.4) {
+      const k = this.pulseT / 2.4;
+      const s = 1 + k * 3.4;
+      this.pulseRingA.scale.setScalar(s);
+      this.pulseRingA.material.opacity = 0.24 * (1 - k);
+      this.pulseRingB.scale.setScalar(s + 0.4);
+      this.pulseRingB.material.opacity = 0.17 * (1 - k);
     } else {
-      this.pulseWave.material.opacity = 0;
+      this.pulseRingA.material.opacity = 0;
+      this.pulseRingB.material.opacity = 0;
     }
   }
 }
