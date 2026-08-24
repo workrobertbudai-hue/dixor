@@ -74,7 +74,7 @@ export class CoreWorld {
       })
     );
     this.pulseT = 999;
-    this.nextPulse = 7 + Math.random() * 6;
+    this.nextPulse = 5 + Math.random() * 4;
 
     this.group.add(this.core, this.shell, this.shell2, this.ringA, this.ringB, this.heartGlow, this.aura, this.pulseWave);
   }
@@ -114,7 +114,7 @@ export class CoreWorld {
     this.pulseT += dt;
     if (this.pulseT > this.nextPulse) {
       this.pulseT = 0;
-      this.nextPulse = 9 + Math.random() * 8;
+      this.nextPulse = 6 + Math.random() * 5;
     }
     if (this.pulseT < 2.2) {
       const k = this.pulseT / 2.2;

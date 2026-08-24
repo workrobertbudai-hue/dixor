@@ -1602,3 +1602,31 @@ body.dx-quiet .dx-snd { opacity: 0; }
   .dx-welcome__title { letter-spacing: 0.22em; margin-right: -0.22em; }
   .dx-node-label { font-size: 10px; }
 }
+/* ---- Presence v2: kompakt pill a DIXOR alatt balra fent ---- */
+.dx-presence {
+  left: 28px !important;
+  top: 46px !important;
+  bottom: auto !important;
+  transform: none !important;
+  padding: 5px 10px !important;
+  gap: 6px !important;
+  font-size: 9px !important;
+  letter-spacing: 0.16em !important;
+}
+.dx-presence__dot { width: 5px !important; height: 5px !important; }
+.dx-presence__num { font-weight: 600; }
+
+.dx-popover {
+  left: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  top: calc(100% + 8px) !important;
+  transform: translateY(6px) !important;
+}
+.dx-presence.is-open .dx-popover { transform: translateY(0) !important; }
+
+.dx-back { top: 84px !important; }
+
+@media (max-width: 760px) {
+  .dx-presence { left: 16px !important; top: 40px !important; }
+}
