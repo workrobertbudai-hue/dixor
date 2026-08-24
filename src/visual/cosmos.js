@@ -38,7 +38,7 @@ function moonTexture() {
 
 /**
  * LIVING COSMOS v5
- * - tuzes nap (csÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³vÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡k NÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â°LKÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œL, csak lobogo korona)
+ * - tuzes nap (csÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³vÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡k NÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°LKÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“L, csak lobogo korona)
  * - krateres hold
  * - villogo csillagok
  * - ASZTEROIDAK: teljes feluletrol, minden iranybol, LASSAN
@@ -131,7 +131,7 @@ export function createCosmos(scene) {
 
   /* ---------- SPIRALGALAXIS (tavol, lassan forog) ---------- */
   function buildGalaxy() {
-    const count = 9500;
+    const count = 8200;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const arms = 3;
@@ -141,10 +141,10 @@ export function createCosmos(scene) {
     for (let i = 0; i < count; i++) {
       const arm = i % arms;
       const tt = Math.pow(Math.random(), 1.6);
-      const r = 1.6 + tt * 234;
+      const r = 1.6 + tt * 110;
       const angle = arm * (Math.PI * 2 / arms) + tt * 4.4 + (Math.random() - 0.5) * 0.38;
       positions[i * 3]     = Math.cos(angle) * r + (Math.random() - 0.5) * 1.4;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * (2.4 - tt * 1.6);
+      positions[i * 3 + 1] = (Math.random() - 0.5) * (1.4 - tt * 1.1);
       positions[i * 3 + 2] = Math.sin(angle) * r + (Math.random() - 0.5) * 1.4;
       const c = cIn.clone().lerp(cOut, tt).multiplyScalar(1 - tt * 0.78);
       colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
@@ -161,9 +161,9 @@ export function createCosmos(scene) {
     });
 
     const pts = new THREE.Points(geo, mat);
-    pts.position.set(0, 16, -290);
-    pts.rotation.z = 0.55;
-    pts.rotation.x = 0.4;
+    pts.position.set(0, 12, -230);
+    pts.rotation.z = 0.5;
+    pts.rotation.x = 0.62;
 
     /* magfeny */
     pts.add(createGlow(0xffd9a0, 10, 0.5));
