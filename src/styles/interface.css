@@ -1679,3 +1679,57 @@ body.dx-quiet .dx-snd { opacity: 0; }
   background: rgba(6, 12, 18, 0.85);
 }
 body.dx-quiet .dx-dwell { opacity: 0; }
+/* ---- Node labels 3D ---- */
+.dx-nlabel {
+  position: fixed;
+  transform: translate(-50%, 0);
+  padding: 3px 9px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: var(--c);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+}
+.dx-nlabel.is-on { opacity: 0.8; }
+
+/* ---- Target frame ---- */
+.dx-target {
+  position: fixed;
+  width: 130px;
+  height: 130px;
+  margin-left: -65px;
+  margin-top: -65px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 18;
+}
+.dx-target.is-on { opacity: 1; }
+.dx-target i {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--dx-accent);
+  filter: drop-shadow(0 0 6px rgba(87, 230, 217, 0.7));
+}
+.dx-target .tl { left: 0; top: 0; border-right: none; border-bottom: none; }
+.dx-target .tr { right: 0; top: 0; border-left: none; border-bottom: none; }
+.dx-target .bl { left: 0; bottom: 0; border-right: none; border-top: none; }
+.dx-target .br { right: 0; bottom: 0; border-left: none; border-top: none; }
+.dx-target .spin {
+  inset: 12px;
+  width: auto; height: auto;
+  border: none !important;
+  border-radius: 50%;
+  border-top: 1px dashed rgba(87, 230, 217, 0.5) !important;
+  animation: dx-tspin 6s linear infinite;
+  filter: none;
+}
+@keyframes dx-tspin { to { transform: rotate(360deg); } }
+body.dx-quiet .dx-nlabel, body.dx-quiet .dx-target { opacity: 0 !important; }

@@ -16,6 +16,7 @@ import { ZoomController } from '../interaction/zoom.js';
 import { OrbitController } from '../interaction/orbit.js';
 import { SoundSystem } from '../audio/sound.js';
 import { DwellController } from '../interaction/dwell.js';
+import { NodeLabels3D } from '../ui/node-labels-3d.js';
 import { NodeLabel } from '../ui/node-label.js';
 import { WelcomeScreen } from '../ui/welcome-screen.js';
 import { SearchInterface } from '../ui/search-interface.js';
@@ -177,6 +178,7 @@ export class App {
     this.orbitCtl = new OrbitController(this);
     this.soundCtl = new SoundSystem(this);
     this.dwellCtl = new DwellController(this);
+    this.labels3d = new NodeLabels3D(this);
     this.raycaster = new RaycasterService();
     this.label = new NodeLabel();
     this.hover = new HoverController({ dom: this.renderer.domElement, label: this.label });
@@ -242,6 +244,7 @@ export class App {
       const node = hit ? hit.object.userData.nodeRef : null;
       this.hover.update(node, this.mouse);
       this.click.update(node);
+      this.labels3d ? this.labels3d.update(dt, node) : null;
       this.dwellCtl ? this.dwellCtl.update(dt, node, this.mouse) : null;
     });
 
