@@ -1,7 +1,7 @@
 
 ---
 
-© 2026 Robert Bunke. All rights reserved. DIXOR™ is a working title claimed by the author.
+© 2026 Robert Budai. All rights reserved. DIXOR™ is a working title claimed by the author.
 # DIXOR
 
 **Intelligent Interface & Human Potential Platform**
