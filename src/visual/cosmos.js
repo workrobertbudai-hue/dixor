@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { createGlow } from './glow.js';
 
-/* ---- canvas textura seged ---- */
 function tex(draw) {
   const c = document.createElement('canvas');
   c.width = 256; c.height = 128;
@@ -9,7 +8,6 @@ function tex(draw) {
   return new THREE.CanvasTexture(c);
 }
 
-/* voroses-tuzes napfelszin: foltok, granulacio, napfoltok */
 function sunTexture() {
   return tex((x, W, H) => {
     x.fillStyle = '#ff7a30'; x.fillRect(0, 0, W, H);
@@ -39,14 +37,19 @@ function moonTexture() {
 }
 
 /**
- * LIVING COSMOS v4 - tuzes nap napcsovakkal, hold kraterrekkel,
- * villogo csillagok, FOLYAMATOS valtozo-surusegu asteroidak, meteorok.
+ * LIVING COSMOS v5
+ * - tuzes nap (csóvák NÉLKÜL, csak lobogo korona)
+ * - krateres hold
+ * - villogo csillagok
+ * - ASZTEROIDAK: teljes feluletrol, minden iranybol, LASSAN
+ * - meteorok megmaradnak
+ * - UJ: tavoli spiralgalaxis + nebula foltok
  */
 export function createCosmos(scene) {
   const group = new THREE.Group();
   scene.add(group);
 
-  /* ---------- NAP: tuzes, napcsovakkal ---------- */
+  /* ---------- NAP ---------- */
   const sunGroup = new THREE.Group();
   const sunMesh = new THREE.Mesh(
     new THREE.SphereGeometry(5, 40, 40),
@@ -57,34 +60,6 @@ export function createCosmos(scene) {
   sunGroup.add(sunMesh, corona, coronaIn);
   sunGroup.position.set(-42, 20, -66);
   group.add(sunGroup);
-
-  /* napcsovak: a felszinbol kilovo langivek */
-  const flares = [];
-  const flareGeo = new THREE.ConeGeometry(0.5, 3.2, 10, 1, true);
-  const flareMatBase = new THREE.MeshBasicMaterial({
-    color: 0xff7a35, transparent: true, opacity: 0,
-    blending: THREE.AdditiveBlending, depthWrite: false,
-    side: THREE.DoubleSide, fog: false,
-  });
-
-  function spawnFlare() {
-    const holder = new THREE.Group();
-    const dir = new THREE.Vector3().randomDirection();
-    holder.position.copy(sunGroup.position).add(dir.clone().multiplyScalar(4.6));
-    holder.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
-    const m = new THREE.Mesh(flareGeo, flareMatBase.clone());
-    m.position.y = 1.6;
-    holder.add(m);
-    holder.userData = { m, age: 0, life: 1.8 + Math.random() * 1.5, maxLen: 2.0 + Math.random() * 3.2 };
-    group.add(holder);
-    flares.push(holder);
-  }
-  function scheduleFlares() {
-    spawnFlare();
-    if (Math.random() > 0.45) spawnFlare();
-    setTimeout(scheduleFlares, 800 + Math.random() * 1500);
-  }
-  setTimeout(scheduleFlares, 1000);
 
   /* ---------- HOLD ---------- */
   const moonGroup = new THREE.Group();
@@ -154,7 +129,65 @@ export function createCosmos(scene) {
   const starsNear = buildStars(1000, 30, 90, 0.85);
   group.add(starsFar, starsNear);
 
-  /* ---------- ASZTEROIDAK: folyamatos, valtozo surusegu aramlas ---------- */
+  /* ---------- SPIRALGALAXIS (tavol, lassan forog) ---------- */
+  function buildGalaxy() {
+    const count = 2400;
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+    const arms = 3;
+    const cIn = new THREE.Color(0xffd9a0);
+    const cOut = new THREE.Color(0x7aa2ff);
+
+    for (let i = 0; i < count; i++) {
+      const arm = i % arms;
+      const tt = Math.pow(Math.random(), 1.6);
+      const r = 1.6 + tt * 17;
+      const angle = arm * (Math.PI * 2 / arms) + tt * 4.4 + (Math.random() - 0.5) * 0.38;
+      positions[i * 3]     = Math.cos(angle) * r + (Math.random() - 0.5) * 1.4;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * (2.4 - tt * 1.6);
+      positions[i * 3 + 2] = Math.sin(angle) * r + (Math.random() - 0.5) * 1.4;
+      const c = cIn.clone().lerp(cOut, tt);
+      colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const mat = new THREE.PointsMaterial({
+      size: 0.22, transparent: true, opacity: 0.85,
+      blending: THREE.AdditiveBlending, depthWrite: false,
+      vertexColors: true, fog: false,
+    });
+
+    const pts = new THREE.Points(geo, mat);
+    pts.position.set(-58, 40, -120);
+    pts.rotation.z = 0.55;
+    pts.rotation.x = 0.4;
+
+    /* magfeny */
+    pts.add(createGlow(0xffd9a0, 10, 0.5));
+
+    return pts;
+  }
+
+  const galaxy = buildGalaxy();
+  group.add(galaxy);
+
+  /* ---------- NEBULA FOLTOK ---------- */
+  const nebulas = [];
+  function addNebula(colorHex, scale, pos, opacity) {
+    const n = createGlow(colorHex, scale, opacity);
+    n.position.copy(pos);
+    group.add(n);
+    nebulas.push(n);
+  }
+  addNebula(0x1c3f66, 130, new THREE.Vector3(-70, -30, -140), 0.16);
+  addNebula(0x3a2470, 110, new THREE.Vector3(85, 25, -150), 0.14);
+  addNebula(0x11444a, 95,  new THREE.Vector3(30, -50, -125), 0.15);
+  addNebula(0x4a1f38, 80,  new THREE.Vector3(-20, 55, -135), 0.12);
+
+  /* ---------- ASZTEROIDAK: minden iranybol, LASSAN ---------- */
   const swarms = [];
   const rockGeo = new THREE.IcosahedronGeometry(1, 0);
   const rockMats = [
@@ -172,29 +205,39 @@ export function createCosmos(scene) {
     for (let i = 0; i < count; i++) {
       const m = new THREE.Mesh(rockGeo, rockMats[Math.floor(Math.random() * rockMats.length)]);
       m.scale.setScalar(0.25 + Math.random() * 1.0);
-      m.position.set((Math.random() - 0.5) * (8 + count * 0.4), (Math.random() - 0.5) * 9, (Math.random() - 0.5) * 8);
+      m.position.set((Math.random() - 0.5) * (8 + count * 0.4), (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 9);
       m.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
       m.userData.spin = new THREE.Vector3(
-        (Math.random() - 0.5) * 1.6, (Math.random() - 0.5) * 1.6, (Math.random() - 0.5) * 1.6);
+        (Math.random() - 0.5) * 1.1, (Math.random() - 0.5) * 1.1, (Math.random() - 0.5) * 1.1);
       g.add(m);
     }
-    const side = Math.random() > 0.5 ? 1 : -1;
-    g.position.set(-side * 62, (Math.random() - 0.35) * 20, -(22 + Math.random() * 36));
-    g.userData = { speed: side * (14 + Math.random() * 16) };
+
+    /* teljes felulet: veletlen irany a gobon, at a terkozepen */
+    const dir = new THREE.Vector3().randomDirection();
+    const startDist = 70;
+    g.position.copy(dir).multiplyScalar(startDist);
+    g.position.y += (Math.random() - 0.5) * 10;
+
+    const targetDir = new THREE.Vector3().randomDirection();
+    const target = targetDir.multiplyScalar(70);
+    const vel = target.sub(g.position.clone()).normalize().multiplyScalar(5 + Math.random() * 4);
+    g.userData.vel = vel;
+
     group.add(g); swarms.push(g);
+
     setTimeout(() => {
       const i = swarms.indexOf(g);
       if (i !== -1) swarms.splice(i, 1);
       group.remove(g);
-    }, 13000);
+    }, 24000);
   }
   function pump() {
     if (swarms.length < 3) spawnSwarm();
-    setTimeout(pump, 3000 + Math.random() * 6000);
+    setTimeout(pump, 3500 + Math.random() * 6000);
   }
   setTimeout(pump, 2500);
 
-  /* ---------- METEOROK: gyors fenycsikok ---------- */
+  /* ---------- METEOROK ---------- */
   const meteors = [];
   function spawnMeteor() {
     const g = new THREE.Group();
@@ -230,7 +273,7 @@ export function createCosmos(scene) {
   }
   setTimeout(scheduleMeteor, 12000);
 
-  /* KODMENTESITES minden indulaskor letezo anyagra */
+  /* KODMENTESITES */
   group.traverse((o) => {
     if (o.material) {
       const list = Array.isArray(o.material) ? o.material : [o.material];
@@ -244,30 +287,21 @@ export function createCosmos(scene) {
     starsNear.material.uniforms.uTime.value = t;
 
     sunMesh.rotation.y += dt * 0.03;
-
-    /* korona lobogasa */
     corona.material.opacity = 0.55 + Math.sin(t * 6.5) * 0.07 + Math.sin(t * 11.3) * 0.05;
     coronaIn.material.opacity = 0.6 + Math.sin(t * 8.1 + 1.7) * 0.08;
-
-    /* napcsovak: novekedes-fenylessel, aztan eltunnek */
-    for (let i = flares.length - 1; i >= 0; i--) {
-      const f = flares[i];
-      f.userData.age += dt;
-      const k = f.userData.age / f.userData.life;
-      if (k >= 1) { group.remove(f); flares.splice(i, 1); continue; }
-      const wave = Math.sin(k * Math.PI);
-      const len = 0.4 + f.userData.maxLen * wave;
-      f.userData.m.scale.set(1 - k * 0.35, Math.max(0.02, len / 3.2), 1 - k * 0.35);
-      f.userData.m.material.opacity = 0.85 * wave;
-    }
 
     moonGroup.rotation.y += dt * 0.02;
     moonGroup.position.x = 34 + Math.sin(t * 0.03) * 7;
     moonGroup.position.y = 17 + Math.cos(t * 0.024) * 4;
 
+    galaxy.rotation.y += dt * 0.012;
+    nebulas.forEach((n, i) => {
+      n.material.opacity = (i % 2 === 0 ? 0.13 : 0.11) + Math.sin(t * 0.25 + i * 1.9) * 0.04;
+    });
+
     for (let i = swarms.length - 1; i >= 0; i--) {
       const g = swarms[i];
-      g.position.x += g.userData.speed * dt;
+      g.position.addScaledVector(g.userData.vel, dt);
       g.children.forEach((m) => {
         if (m.userData.spin) {
           m.rotation.x += m.userData.spin.x * dt;
