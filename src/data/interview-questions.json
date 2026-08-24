@@ -1,0 +1,56 @@
+{
+  "version": "0.1.0",
+  "categories": [
+    {
+      "id": "behavioral",
+      "label": "BEHAVIORAL",
+      "questions": [
+        { "id": "b1", "q": "Tell me about a time you handled a difficult customer.", "hint": "They want de-escalation and empathy - use a real story." },
+        { "id": "b2", "q": "Describe a situation where you worked under pressure.", "hint": "Show prioritization, not heroics. What stayed done?" },
+        { "id": "b3", "q": "Give an example of a mistake you made and what you learned.", "hint": "Ownership plus change - never blame others." },
+        { "id": "b4", "q": "Tell me about a time you helped a colleague succeed.", "hint": "Teamwork evidence beats team-speak." },
+        { "id": "b5", "q": "When did you adapt to an unexpected change at work?", "hint": "Flexibility story: what changed, what you did first." }
+      ]
+    },
+    {
+      "id": "transferable",
+      "label": "TRANSFERABLE SKILLS",
+      "questions": [
+        { "id": "t1", "q": "You have no direct experience here - why should we consider you?", "hint": "Map your past duties to their needs, skill by skill." },
+        { "id": "t2", "q": "Which of your previous routines would transfer to this role?", "hint": "Concrete daily habits translate better than titles." },
+        { "id": "t3", "q": "How did serving customers prepare you for this job?", "hint": "Patience, clarity, conflict handling - name all three." },
+        { "id": "t4", "q": "What did organizing stock or files teach you about accuracy?", "hint": "Small errors cost money - show you know that." }
+      ]
+    },
+    {
+      "id": "careerchange",
+      "label": "CAREER CHANGE",
+      "questions": [
+        { "id": "c1", "q": "Why are you changing industries?", "hint": "Run toward something, not away from something." },
+        { "id": "c2", "q": "How do we know you will not leave in six months?", "hint": "Show researched commitment to THIS field." },
+        { "id": "c3", "q": "What have you already done to prepare for this switch?", "hint": "Courses, practice, conversations - proof of momentum." },
+        { "id": "c4", "q": "Are you comfortable starting at a lower level again?", "hint": "Be honest about expectations and growth speed." }
+      ]
+    },
+    {
+      "id": "fit",
+      "label": "COMPANY FIT",
+      "questions": [
+        { "id": "f1", "q": "What do you know about our company?", "hint": "Two facts from Employer Insight beat ten generic ones." },
+        { "id": "f2", "q": "Why this role and not a similar one elsewhere?", "hint": "Match your strengths to their specific posting." },
+        { "id": "f3", "q": "What kind of environment brings out your best work?", "hint": "Answer honestly - filtering works both ways." },
+        { "id": "f4", "q": "Where do you want to be in two years?", "hint": "Growth inside their structure is the safe frame." }
+      ]
+    },
+    {
+      "id": "situational",
+      "label": "SITUATIONAL",
+      "questions": [
+        { "id": "s1", "q": "A deadline moves up by two days - what do you do first?", "hint": "First step: re-prioritize and communicate, not panic." },
+        { "id": "s2", "q": "You notice a colleague making repeated errors - how do you react?", "hint": "Private, kind, factual - then escalate only if needed." },
+        { "id": "s3", "q": "A customer asks for something against policy - what do you say?", "hint": "Offer the closest allowed alternative, stay warm." },
+        { "id": "s4", "q": "You are given a task you do not understand - walk me through it.", "hint": "Asking precise questions is strength, not weakness." }
+      ]
+    }
+  ]
+}

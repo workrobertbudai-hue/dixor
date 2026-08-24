@@ -1380,3 +1380,64 @@ body.dx-quiet .dx-zoom { opacity: 0; }
   flex: none;
 }
 .dx-emp .dx-chat__rooms { width: 150px; }
+/* ---- Interview preparation ---- */
+.dx-star {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  padding: 9px 12px;
+  border: 1px dashed rgba(87,230,217,0.3);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: var(--dx-text-dim);
+}
+.dx-star span {
+  color: var(--dx-accent);
+  font-size: 12px;
+  font-weight: 600;
+}
+.dx-star b { margin-right: 6px; font-weight: 400; }
+
+.dx-iq {
+  border-left: 2px solid rgba(87,230,217,0.35);
+  background: rgba(87,230,217,0.03);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  flex: none;
+}
+.dx-iq p { margin: 0; font-size: 11.5px; line-height: 1.55; color: var(--dx-text); letter-spacing: 0.04em; }
+.dx-iq__hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--dx-text-dim);
+  font-style: italic;
+}
+.dx-iq__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 9px;
+}
+.dx-iq__row em {
+  font-style: normal;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--dx-text-dim);
+}
+
+.dx-iq__mini {
+  display: block;
+  height: 3px;
+  margin-top: 6px;
+  background: rgba(232,241,242,0.08);
+  font-style: normal;
+}
+.dx-iq__mini u {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  background: linear-gradient(90deg, var(--dx-accent), #7aa2ff);
+}
