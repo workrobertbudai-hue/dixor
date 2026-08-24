@@ -34,8 +34,10 @@ export const live = {
 
   init() {
     if (this.socket) return;
+    const __dxServerUrl = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+      ? 'http://localhost:3001' : undefined; /* interneten: ugyanaz a cim */
     try {
-      this.socket = io('http://localhost:3001', {
+      this.socket = io(__dxServerUrl, {
         transports: ['websocket'],
         reconnectionDelayMax: 5000,
       });
@@ -80,7 +82,9 @@ export const live = {
 
   _emit(ev, data) {
     (this._subs[ev] || []).forEach((fn) => {
-      try { fn(data); } catch {}
+      const __dxServerUrl = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+      ? 'http://localhost:3001' : undefined; /* interneten: ugyanaz a cim */
+    try { fn(data); } catch {}
     });
   },
 

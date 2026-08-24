@@ -1,4 +1,8 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import http from 'http';
 import { Server } from 'socket.io';
 
@@ -6,6 +10,7 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 app.get('/health', (req, res) => res.json({ ok: true }));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 const server = http.createServer(app);
 const io = new Server(server, {
