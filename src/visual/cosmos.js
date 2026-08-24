@@ -1,26 +1,25 @@
 import * as THREE from 'three';
 import { createGlow } from './glow.js';
 
-/* ---- canvas textura segedek ---- */
-
+/* ---- canvas textura seged ---- */
 function tex(draw) {
   const c = document.createElement('canvas');
   c.width = 256; c.height = 128;
   draw(c.getContext('2d'), 256, 128);
-  const t = new THREE.CanvasTexture(c);
-  return t;
+  return new THREE.CanvasTexture(c);
 }
 
+/* voroses-tuzes napfelszin: foltok, granulacio, napfoltok */
 function sunTexture() {
   return tex((x, W, H) => {
-    x.fillStyle = '#ffc95e'; x.fillRect(0, 0, W, H);
-    for (let i = 0; i < 70; i++) {
-      x.fillStyle = 'rgba(255,' + (170 + Math.floor(Math.random() * 70)) + ',110,' + (0.2 + Math.random() * 0.5) + ')';
+    x.fillStyle = '#ff7a30'; x.fillRect(0, 0, W, H);
+    for (let i = 0; i < 80; i++) {
+      x.fillStyle = 'rgba(255,' + (110 + Math.floor(Math.random() * 90)) + ',45,' + (0.25 + Math.random() * 0.5) + ')';
       x.beginPath(); x.arc(Math.random() * W, Math.random() * H, 3 + Math.random() * 12, 0, Math.PI * 2); x.fill();
     }
-    for (let i = 0; i < 8; i++) {
-      x.fillStyle = 'rgba(205,92,25,0.6)';
-      x.beginPath(); x.arc(Math.random() * W, Math.random() * H, 2 + Math.random() * 6, 0, Math.PI * 2); x.fill();
+    for (let i = 0; i < 12; i++) {
+      x.fillStyle = 'rgba(150,38,10,' + (0.45 + Math.random() * 0.35) + ')';
+      x.beginPath(); x.arc(Math.random() * W, Math.random() * H, 2 + Math.random() * 7, 0, Math.PI * 2); x.fill();
     }
   });
 }
@@ -39,55 +38,55 @@ function moonTexture() {
   });
 }
 
-function bandedTexture(base, band1, band2) {
-  return tex((x, W, H) => {
-    x.fillStyle = base; x.fillRect(0, 0, W, H);
-    for (let y = 0; y < H; y += 6) {
-      x.fillStyle = (Math.random() > 0.5 ? band1 : band2);
-      x.globalAlpha = 0.12 + Math.random() * 0.25;
-      x.fillRect(0, y, W, 3 + Math.random() * 7);
-    }
-    x.globalAlpha = 1;
-    for (let i = 0; i < 12; i++) {
-      x.fillStyle = 'rgba(255,255,255,0.08)';
-      x.beginPath(); x.arc(Math.random() * W, Math.random() * H, 3 + Math.random() * 8, 0, Math.PI * 2); x.fill();
-    }
-  });
-}
-
-function mottledTexture(base, spot) {
-  return tex((x, W, H) => {
-    x.fillStyle = base; x.fillRect(0, 0, W, H);
-    for (let i = 0; i < 55; i++) {
-      x.fillStyle = spot;
-      x.globalAlpha = 0.1 + Math.random() * 0.35;
-      x.beginPath(); x.arc(Math.random() * W, Math.random() * H, 2 + Math.random() * 11, 0, Math.PI * 2); x.fill();
-    }
-    x.globalAlpha = 1;
-  });
-}
-
 /**
- * LIVING COSMOS v3 - eletparzsos egitestek (texturak, forgas, gyuru),
- * FOLYAMATOS valtozo sursusegu asteroida-aramlas, ustokosok.
+ * LIVING COSMOS v4 - tuzes nap napcsovakkal, hold kraterrekkel,
+ * villogo csillagok, FOLYAMATOS valtozo-surusegu asteroidak, meteorok.
  */
 export function createCosmos(scene) {
   const group = new THREE.Group();
   scene.add(group);
 
-  /* ---------- NAP: elo felszin, lobogo korona ---------- */
+  /* ---------- NAP: tuzes, napcsovakkal ---------- */
   const sunGroup = new THREE.Group();
   const sunMesh = new THREE.Mesh(
     new THREE.SphereGeometry(5, 40, 40),
     new THREE.MeshBasicMaterial({ map: sunTexture() })
   );
-  const corona = createGlow(0xffb347, 32, 0.62);
-  const coronaIn = createGlow(0xffe9c4, 16, 0.7);
+  const corona = createGlow(0xff6a3d, 30, 0.62);
+  const coronaIn = createGlow(0xffb37a, 15, 0.68);
   sunGroup.add(sunMesh, corona, coronaIn);
   sunGroup.position.set(-42, 20, -66);
   group.add(sunGroup);
 
-  /* ---------- HOLD: kratekkel, lassu fordulaval ---------- */
+  /* napcsovak: a felszinbol kilovo langivek */
+  const flares = [];
+  const flareGeo = new THREE.ConeGeometry(0.5, 3.2, 10, 1, true);
+  const flareMatBase = new THREE.MeshBasicMaterial({
+    color: 0xff7a35, transparent: true, opacity: 0,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+    side: THREE.DoubleSide, fog: false,
+  });
+
+  function spawnFlare() {
+    const holder = new THREE.Group();
+    const dir = new THREE.Vector3().randomDirection();
+    holder.position.copy(sunGroup.position).add(dir.clone().multiplyScalar(4.6));
+    holder.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    const m = new THREE.Mesh(flareGeo, flareMatBase.clone());
+    m.position.y = 1.6;
+    holder.add(m);
+    holder.userData = { m, age: 0, life: 1.8 + Math.random() * 1.5, maxLen: 2.0 + Math.random() * 3.2 };
+    group.add(holder);
+    flares.push(holder);
+  }
+  function scheduleFlares() {
+    spawnFlare();
+    if (Math.random() > 0.45) spawnFlare();
+    setTimeout(scheduleFlares, 800 + Math.random() * 1500);
+  }
+  setTimeout(scheduleFlares, 1000);
+
+  /* ---------- HOLD ---------- */
   const moonGroup = new THREE.Group();
   const moonMat = new THREE.MeshStandardMaterial({
     map: moonTexture(), metalness: 0.1, roughness: 0.9,
@@ -98,7 +97,7 @@ export function createCosmos(scene) {
   moonGroup.position.set(34, 17, -56);
   group.add(moonGroup);
 
-  /* ---------- CSILLAGOK (valtozatlanul villogoak) ---------- */
+  /* ---------- CSILLAGOK ---------- */
   function buildStars(count, minR, maxR, sizeBase) {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
@@ -155,7 +154,7 @@ export function createCosmos(scene) {
   const starsNear = buildStars(1000, 30, 90, 0.85);
   group.add(starsFar, starsNear);
 
-  /* ---------- ASZTEROIDAK: FOLYAMATOS, VALTOZO SURUSUEG ---------- */
+  /* ---------- ASZTEROIDAK: folyamatos, valtozo surusegu aramlas ---------- */
   const swarms = [];
   const rockGeo = new THREE.IcosahedronGeometry(1, 0);
   const rockMats = [
@@ -166,13 +165,10 @@ export function createCosmos(scene) {
 
   function spawnSwarm() {
     const g = new THREE.Group();
-
-    /* sursuseg: hol keves, hol nagyon sok */
     const roll = Math.random();
     const count = roll < 0.35 ? 6 + Math.floor(Math.random() * 8)
                 : roll < 0.8 ? 14 + Math.floor(Math.random() * 12)
                 : 28 + Math.floor(Math.random() * 18);
-
     for (let i = 0; i < count; i++) {
       const m = new THREE.Mesh(rockGeo, rockMats[Math.floor(Math.random() * rockMats.length)]);
       m.scale.setScalar(0.25 + Math.random() * 1.0);
@@ -182,112 +178,59 @@ export function createCosmos(scene) {
         (Math.random() - 0.5) * 1.6, (Math.random() - 0.5) * 1.6, (Math.random() - 0.5) * 1.6);
       g.add(m);
     }
-
     const side = Math.random() > 0.5 ? 1 : -1;
     g.position.set(-side * 62, (Math.random() - 0.35) * 20, -(22 + Math.random() * 36));
     g.userData = { speed: side * (14 + Math.random() * 16) };
-    group.add(g);
-    swarms.push(g);
-
+    group.add(g); swarms.push(g);
     setTimeout(() => {
       const i = swarms.indexOf(g);
       if (i !== -1) swarms.splice(i, 1);
       group.remove(g);
     }, 13000);
   }
-
-  /* folyamatos aramlas: ha kevesebb mint 3 raj van indul, ujat indit */
   function pump() {
     if (swarms.length < 3) spawnSwarm();
     setTimeout(pump, 3000 + Math.random() * 6000);
   }
   setTimeout(pump, 2500);
 
-  /* ---------- USTOKOS ---------- */
-  const comets = [];
-  function spawnComet() {
+  /* ---------- METEOROK: gyors fenycsikok ---------- */
+  const meteors = [];
+  function spawnMeteor() {
     const g = new THREE.Group();
-    g.add(new THREE.Mesh(new THREE.SphereGeometry(0.6, 14, 14),
-      new THREE.MeshBasicMaterial({ color: 0xd6ecff })));
-    g.add(createGlow(0x9fd4ff, 7, 0.95));
-    const tailLen = 30;
-    const tailGeo = new THREE.ConeGeometry(1.0, tailLen, 12, 1, true);
-    const tailMat = new THREE.MeshBasicMaterial({
-      color: 0x9cc8f2, transparent: true, opacity: 0.3,
-      blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide,
+    g.add(new THREE.Mesh(new THREE.SphereGeometry(0.3, 8, 8),
+      new THREE.MeshBasicMaterial({ color: 0xfff2d8, fog: false })));
+    const tg = new THREE.ConeGeometry(0.2, 7, 8, 1, true);
+    const tm = new THREE.MeshBasicMaterial({
+      color: 0xffd9a0, transparent: true, opacity: 0.55,
+      blending: THREE.AdditiveBlending, depthWrite: false,
+      side: THREE.DoubleSide, fog: false,
     });
-    const tail = new THREE.Mesh(tailGeo, tailMat);
-    tail.rotation.x = Math.PI / 2; tail.position.z = tailLen / 2;
-    g.add(tail);
-    g.position.set((Math.random() > 0.5 ? 1 : -1) * 78, 16 + Math.random() * 22, -(38 + Math.random() * 30));
+    const tr = new THREE.Mesh(tg, tm);
+    tr.rotation.x = Math.PI / 2; tr.position.z = 3.5;
+    g.add(tr);
+    g.position.set((Math.random() > 0.5 ? 1 : -1) * 70, (Math.random() - 0.2) * 26, -(24 + Math.random() * 34));
     const dir = new THREE.Vector3(
-      (Math.random() > 0.5 ? -1 : 1) * (0.8 + Math.random() * 0.3),
-      -0.2 - Math.random() * 0.2, 0.06).normalize();
+      (Math.random() > 0.5 ? -1 : 1) * (0.85 + Math.random() * 0.25),
+      -(0.15 + Math.random() * 0.25), 0.05).normalize();
     g.userData.dir = dir;
     g.lookAt(g.position.clone().add(dir));
-    group.add(g); comets.push(g);
+    group.add(g); meteors.push(g);
     setTimeout(() => {
-      const i = comets.indexOf(g);
-      if (i !== -1) comets.splice(i, 1);
+      const i = meteors.indexOf(g);
+      if (i !== -1) meteors.splice(i, 1);
       group.remove(g);
-    }, 11000);
+      tg.dispose(); tm.dispose();
+    }, 6000);
   }
-  function scheduleComet() {
-    spawnComet();
-    setTimeout(scheduleComet, 110000 + Math.random() * 80000);
+  function scheduleMeteor() {
+    spawnMeteor();
+    if (Math.random() > 0.6) spawnMeteor();
+    setTimeout(scheduleMeteor, 16000 + Math.random() * 18000);
   }
-  setTimeout(scheduleComet, 26000);
+  setTimeout(scheduleMeteor, 12000);
 
-  /* ---------- BOGYGOK: texturakkal, gyuruvel, forgassal ---------- */
-  const planets = [];
-
-  /* kep-bolygo savokkal + Szaturnusz-gyuruvel */
-  const p1 = new THREE.Group();
-  const p1body = new THREE.Mesh(new THREE.SphereGeometry(3.4, 40, 40),
-    new THREE.MeshStandardMaterial({
-      map: bandedTexture('#4a76b8', '#7aa2ff', '#31598f'),
-      metalness: 0.08, roughness: 0.85,
-      emissive: 0x3a5f9e, emissiveIntensity: 0.22,
-    }));
-  const ringGeo = new THREE.RingGeometry(4.6, 6.4, 80);
-  const ringMat = new THREE.MeshBasicMaterial({
-    color: 0x9db8e8, transparent: true, opacity: 0.4,
-    side: THREE.DoubleSide, depthWrite: false,
-  });
-  const p1ring = new THREE.Mesh(ringGeo, ringMat);
-  p1ring.rotation.x = Math.PI / 2.35;
-  p1.add(p1body, p1ring, createGlow(0x7aa2ff, 20, 0.3));
-  p1.position.set(-30, -11, -46);
-  p1.userData.spinBody = p1body;
-  group.add(p1); planets.push(p1);
-
-  /* rozsdas bolygo foltokkal */
-  const p2 = new THREE.Group();
-  const p2body = new THREE.Mesh(new THREE.SphereGeometry(2.2, 36, 36),
-    new THREE.MeshStandardMaterial({
-      map: mottledTexture('#c47a52', '#8a4a30'),
-      metalness: 0.08, roughness: 0.88,
-      emissive: 0x9a5a3a, emissiveIntensity: 0.2,
-    }));
-  p2.add(p2body, createGlow(0xffb08a, 13, 0.28));
-  p2.position.set(37, -15, -56);
-  p2.userData.spinBody = p2body;
-  group.add(p2); planets.push(p2);
-
-  /* zoldes bolygo orvenyekkel */
-  const p3 = new THREE.Group();
-  const p3body = new THREE.Mesh(new THREE.SphereGeometry(1.6, 32, 32),
-    new THREE.MeshStandardMaterial({
-      map: mottledTexture('#5aa884', '#2e7a58'),
-      metalness: 0.08, roughness: 0.86,
-      emissive: 0x3f9a74, emissiveIntensity: 0.22,
-    }));
-  p3.add(p3body, createGlow(0x9fe8cc, 9, 0.3));
-  p3.position.set(12, 26, -68);
-  p3.userData.spinBody = p3body;
-  group.add(p3); planets.push(p3);
-
-  /* KODMENTESITES minden elemre */
+  /* KODMENTESITES minden indulaskor letezo anyagra */
   group.traverse((o) => {
     if (o.material) {
       const list = Array.isArray(o.material) ? o.material : [o.material];
@@ -302,15 +245,25 @@ export function createCosmos(scene) {
 
     sunMesh.rotation.y += dt * 0.03;
 
+    /* korona lobogasa */
+    corona.material.opacity = 0.55 + Math.sin(t * 6.5) * 0.07 + Math.sin(t * 11.3) * 0.05;
+    coronaIn.material.opacity = 0.6 + Math.sin(t * 8.1 + 1.7) * 0.08;
+
+    /* napcsovak: novekedes-fenylessel, aztan eltunnek */
+    for (let i = flares.length - 1; i >= 0; i--) {
+      const f = flares[i];
+      f.userData.age += dt;
+      const k = f.userData.age / f.userData.life;
+      if (k >= 1) { group.remove(f); flares.splice(i, 1); continue; }
+      const wave = Math.sin(k * Math.PI);
+      const len = 0.4 + f.userData.maxLen * wave;
+      f.userData.m.scale.set(1 - k * 0.35, Math.max(0.02, len / 3.2), 1 - k * 0.35);
+      f.userData.m.material.opacity = 0.85 * wave;
+    }
+
     moonGroup.rotation.y += dt * 0.02;
     moonGroup.position.x = 34 + Math.sin(t * 0.03) * 7;
     moonGroup.position.y = 17 + Math.cos(t * 0.024) * 4;
-
-    planets.forEach((p) => {
-      if (p.userData.spinBody) {
-        p.userData.spinBody.rotation.y += dt * 0.12;
-      }
-    });
 
     for (let i = swarms.length - 1; i >= 0; i--) {
       const g = swarms[i];
@@ -324,8 +277,8 @@ export function createCosmos(scene) {
       });
     }
 
-    for (let i = comets.length - 1; i >= 0; i--) {
-      comets[i].position.addScaledVector(comets[i].userData.dir, dt * 30);
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      meteors[i].position.addScaledVector(meteors[i].userData.dir, dt * 46);
     }
   }
 

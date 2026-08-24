@@ -16,37 +16,37 @@ export class CoreWorld {
       color: 0x0b1420, metalness: 0.92, roughness: 0.22,
       emissive: 0x57e6d9, emissiveIntensity: 0.65,
     });
-    this.core = new THREE.Mesh(new THREE.OctahedronGeometry(1.5, 0), this.coreMat);
+    this.core = new THREE.Mesh(new THREE.OctahedronGeometry(0.95, 0), this.coreMat);
 
     /* kulso racs-hej */
     this.shell = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(3.6, 1),
+      new THREE.IcosahedronGeometry(2.45, 1),
       new THREE.MeshBasicMaterial({ color: 0x57e6d9, wireframe: true, transparent: true, opacity: 0.2 })
     );
 
     /* masodik hej: ellentetes forgasu, halvanyabb */
     this.shell2 = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(4.3, 0),
+      new THREE.IcosahedronGeometry(3.05, 0),
       new THREE.MeshBasicMaterial({ color: 0x7aa2ff, wireframe: true, transparent: true, opacity: 0.12 })
     );
 
     /* dupla energia-gyuru */
     this.ringA = new THREE.Mesh(
-      new THREE.TorusGeometry(5.4, 0.03, 10, 160),
+      new THREE.TorusGeometry(3.75, 0.03, 10, 160),
       new THREE.MeshBasicMaterial({ color: 0x57e6d9, transparent: true, opacity: 0.55 })
     );
     this.ringA.rotation.x = Math.PI / 2.3;
 
     this.ringB = new THREE.Mesh(
-      new THREE.TorusGeometry(6.3, 0.02, 10, 180),
+      new THREE.TorusGeometry(4.5, 0.02, 10, 180),
       new THREE.MeshBasicMaterial({ color: 0x9d8cff, transparent: true, opacity: 0.38 })
     );
     this.ringB.rotation.x = Math.PI / 1.8;
     this.ringB.rotation.y = 0.5;
 
     /* mag-feny es nagy aura */
-    this.heartGlow = createGlow(0x57e6d9, 7, 0.6);
-    this.aura = createGlow(0x7aa2ff, 16, 0.16);
+    this.heartGlow = createGlow(0x57e6d9, 4.6, 0.6);
+    this.aura = createGlow(0x7aa2ff, 10, 0.16);
 
     /* keringo fenszilankok */
     this.shards = [];
@@ -57,7 +57,7 @@ export class CoreWorld {
       );
       const a = (i / 10) * Math.PI * 2;
       s.userData = {
-        a, rr: 5.0 + Math.random() * 1.6,
+        a, rr: 3.3 + Math.random() * 1.1,
         vy: (Math.random() - 0.5) * 1.2,
         sp: 0.35 + Math.random() * 0.3,
       };
@@ -67,7 +67,7 @@ export class CoreWorld {
 
     /* energiapulzus: lezeres lokeshullam (ket eles gyuru) */
     this.pulseRingA = new THREE.Mesh(
-      new THREE.TorusGeometry(4.5, 0.045, 10, 160),
+      new THREE.TorusGeometry(3.6, 0.045, 10, 160),
       new THREE.MeshBasicMaterial({
         color: 0x8ff0ff, transparent: true, opacity: 0,
         blending: THREE.AdditiveBlending, depthWrite: false,
@@ -76,7 +76,7 @@ export class CoreWorld {
     this.pulseRingA.rotation.x = Math.PI / 2;
 
     this.pulseRingB = new THREE.Mesh(
-      new THREE.TorusGeometry(4.5, 0.035, 10, 160),
+      new THREE.TorusGeometry(3.6, 0.035, 10, 160),
       new THREE.MeshBasicMaterial({
         color: 0x9d8cff, transparent: true, opacity: 0,
         blending: THREE.AdditiveBlending, depthWrite: false,
@@ -127,9 +127,9 @@ export class CoreWorld {
       this.pulseT = 0;
       this.nextPulse = 6 + Math.random() * 5;
     }
-    if (this.pulseT < 2.4) {
-      const k = this.pulseT / 2.4;
-      const s = 1 + k * 3.4;
+    if (this.pulseT < 3.0) {
+      const k = this.pulseT / 3.0;
+      const s = 1 + k * 9;
       this.pulseRingA.scale.setScalar(s);
       this.pulseRingA.material.opacity = 0.24 * (1 - k);
       this.pulseRingB.scale.setScalar(s + 0.4);
