@@ -1521,3 +1521,23 @@ body.dx-quiet .dx-zoom { opacity: 0; }
 .dx-exseed p { margin: 5px 0 0; font-size: 12px; line-height: 1.6; color: var(--dx-text); letter-spacing: 0.04em; }
 .dx-life__note small { color: var(--dx-text-dim); font-size: 8px; letter-spacing: 0.14em; margin-left: 8px; }
 .dx-life__note i { font-style: normal; color: #6fc9ff; font-size: 9px; letter-spacing: 0.16em; }
+/* ---- Sound toggle ---- */
+.dx-snd {
+  position: fixed;
+  right: 28px;
+  top: calc(50% + 78px);
+  z-index: 30;
+}
+.dx-snd button {
+  width: 34px;
+  height: 34px;
+  background: rgba(6, 12, 18, 0.6);
+  border: 1px solid rgba(87, 230, 217, 0.25);
+  color: var(--dx-accent);
+  font-size: 15px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.2s ease;
+}
+.dx-snd button:hover { border-color: rgba(87, 230, 217, 0.7); }
+body.dx-quiet .dx-snd { opacity: 0; }
