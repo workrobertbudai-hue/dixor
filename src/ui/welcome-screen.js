@@ -1,4 +1,4 @@
-/** WELCOME SCREEN — belépési élmény: nem weboldal, hanem környezet. */
+/** WELCOME SCREEN â€” belÃ©pÃ©si Ã©lmÃ©ny: nem weboldal, hanem kÃ¶rnyezet. */
 export class WelcomeScreen {
   constructor({ onEnter }) {
     this.onEnter = onEnter;
@@ -13,6 +13,7 @@ export class WelcomeScreen {
         <p class="dx-welcome__sub">NAVIGATE&nbsp;&middot;&nbsp;DISCOVER&nbsp;&middot;&nbsp;UNDERSTAND&nbsp;&middot;&nbsp;ACT</p>
         <button class="dx-welcome__enter">ENTER DIXOR</button>
         <p class="dx-welcome__hint">The intelligence stays in the background &mdash; you navigate.</p>
+        <div class="dx-welcome__credit">CREATED&nbsp;BY <span class="dx-credit-name">ROBERT&nbsp;BUDAI</span></div>
       </div>
       <div class="dx-welcome__hairline dx-welcome__hairline--bottom"></div>
       <div class="dx-welcome__footer">v0.1.0 &mdash; CONCEPT BUILD</div>`;
@@ -26,7 +27,7 @@ export class WelcomeScreen {
     });
   }
 
-  /** Personalization: visszatérő látogatónál más felirat. */
+  /** Personalization: visszatÃ©rÅ‘ lÃ¡togatÃ³nÃ¡l mÃ¡s felirat. */
   setButtonLabel(text) { this.enterBtn.textContent = text; }
 
   get isOpen() { return !this.el.classList.contains('is-gone'); }

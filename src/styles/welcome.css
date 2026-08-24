@@ -1,4 +1,4 @@
-.dx-welcome {
+﻿.dx-welcome {
   position: fixed;
   inset: 0;
   z-index: 60;
@@ -18,7 +18,7 @@
   font-size: clamp(56px, 11vw, 128px);
   font-weight: 300;
   letter-spacing: 0.38em;
-  margin-right: -0.38em; /* optikai középre */
+  margin-right: -0.38em; /* optikai kÃ¶zÃ©pre */
   color: var(--dx-text);
   text-shadow: 0 0 40px rgba(87, 230, 217, 0.25);
 }
@@ -87,4 +87,46 @@
 @keyframes dx-hairline {
   from { opacity: 0; width: 0; }
   to   { opacity: 1; }
+}
+/* ---- Created by credit: silver-ocean shimmer ---- */
+.dx-welcome__credit {
+  margin-top: 38px;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  margin-right: -0.34em;
+  color: rgba(190, 210, 226, 0.5);
+  animation: dx-credit-pulse 3.4s ease-in-out infinite;
+}
+
+.dx-credit-name {
+  display: inline-block;
+  font-weight: 500;
+  background: linear-gradient(105deg,
+              #3d6d99 0%,
+              #9fc3dd 20%,
+              #eaf4fb 38%,
+              #7aa2ff 52%,
+              #dce9f3 70%,
+              #2f5d88 88%,
+              #3d6d99 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: dx-credit-shimmer 4.5s linear infinite;
+}
+
+@keyframes dx-credit-shimmer {
+  to { background-position: 220% center; }
+}
+
+@keyframes dx-credit-pulse {
+  0%, 100% {
+    opacity: 0.68;
+    filter: drop-shadow(0 0 5px rgba(122, 162, 255, 0.12));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(122, 162, 255, 0.42));
+  }
 }
