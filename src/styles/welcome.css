@@ -130,3 +130,25 @@
     filter: drop-shadow(0 0 16px rgba(122, 162, 255, 0.42));
   }
 }
+/* ---- Credit: fenyosebb (override) ---- */
+.dx-welcome__credit {
+  color: rgba(214, 232, 244, 0.78);
+  animation: dx-credit-pulse 3s ease-in-out infinite;
+}
+
+@keyframes dx-credit-pulse {
+  0%, 100% {
+    opacity: 0.82;
+    filter: drop-shadow(0 0 7px rgba(122, 162, 255, 0.22));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 22px rgba(140, 180, 255, 0.6));
+  }
+}
+
+/* ---- Kredit az egesz felulet also savjaban ---- */
+.dixor-credit {
+  color: rgba(190, 210, 226, 0.62);
+  animation: dx-credit-pulse 3s ease-in-out infinite;
+}
