@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 
 /**
- * ORBIT CONTROLLER - jobb gombos huzasra korbennezunk a nezesi cel korul.
- * A szoget mindig az aktualis kamera-allapotbol szamoljuk, ezert
- * vilagvaltas/zoom utan is pontosan mukodik.
+ * ORBIT CONTROLLER - BAL gombos huzasra korbennezunk a nezesi cel korul.
+ * A click.js 6px kuszobevel osszhangban: rovid mozdulat = kattintas,
+ * hosszabb huzas = forgatas. Repules kozben inaktív.
  */
 export class OrbitController {
   constructor(app) {
@@ -11,23 +11,21 @@ export class OrbitController {
     const dom = app.renderer.domElement;
 
     this.dragging = false;
+    this.moved = false;
     this.px = 0;
     this.py = 0;
+
     const sph = new THREE.Spherical();
     const dir = new THREE.Vector3();
 
-    /* sajat menut nem akarjuk a canvason */
-    dom.addEventListener('contextmenu', (e) => e.preventDefault());
-
     dom.addEventListener('pointerdown', (e) => {
-      if (e.button !== 2) return;
+      if (e.button !== 0) return;
       const nav = app.navigation;
       if (nav && nav.state === 'traveling') return;
       this.dragging = true;
+      this.moved = false;
       this.px = e.clientX;
       this.py = e.clientY;
-      dom.style.cursor = 'grabbing';
-      e.preventDefault();
     });
 
     window.addEventListener('pointermove', (e) => {
@@ -36,6 +34,10 @@ export class OrbitController {
       const dy = e.clientY - this.py;
       this.px = e.clientX;
       this.py = e.clientY;
+
+      if (!this.moved && Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
+      this.moved = true;
+      dom.style.cursor = 'grabbing';
 
       const a = this.app;
       if (!a.camera || !a.transition) return;
@@ -51,8 +53,9 @@ export class OrbitController {
     });
 
     window.addEventListener('pointerup', (e) => {
-      if (e.button !== 2 || !this.dragging) return;
+      if (e.button !== 0 || !this.dragging) return;
       this.dragging = false;
+      this.moved = false;
       dom.style.cursor = '';
     });
   }
