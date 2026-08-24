@@ -26,6 +26,28 @@ export class ZoomController {
     });
 
     this.#buildButtons();
+
+    /* pinch-zoom touch eszkozon */
+    let pinchStart = null;
+    dom.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+        const [a, b] = e.touches;
+        pinchStart = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      }
+    }, { passive: true });
+
+    dom.addEventListener('touchmove', (e) => {
+      if (!pinchStart || e.touches.length !== 2) return;
+      const [a, b] = e.touches;
+      const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      if (Math.abs(d - pinchStart) > 6) {
+        this.byFactor(d > pinchStart ? 0.94 : 1.06);
+        pinchStart = d;
+      }
+      e.preventDefault();
+    }, { passive: false });
+
+    dom.addEventListener('touchend', () => { pinchStart = null; });
   }
 
   #buildButtons() {

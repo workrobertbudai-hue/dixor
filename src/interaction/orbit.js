@@ -3,7 +3,7 @@ import * as THREE from 'three';
 /**
  * ORBIT CONTROLLER - BAL gombos huzasra korbennezunk a nezesi cel korul.
  * A click.js 6px kuszobevel osszhangban: rovid mozdulat = kattintas,
- * hosszabb huzas = forgatas. Repules kozben inaktív.
+ * hosszabb huzas = forgatas. Repules kozben inaktÃ­v.
  */
 export class OrbitController {
   constructor(app) {
@@ -19,7 +19,9 @@ export class OrbitController {
     const dir = new THREE.Vector3();
 
     dom.addEventListener('pointerdown', (e) => {
-      if (e.button !== 0) return;
+      const isTouch = e.pointerType === 'touch';
+      if (!isTouch && e.button !== 0) return;
+      if (isTouch && e.isPrimary === false) return;
       const nav = app.navigation;
       if (nav && nav.state === 'traveling') return;
       this.dragging = true;

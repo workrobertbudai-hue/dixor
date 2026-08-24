@@ -1581,3 +1581,24 @@ body.dx-quiet .dx-snd { opacity: 0; }
   0%, 100% { margin-top: 0; }
   50%      { margin-top: -3px; }
 }
+/* ---- Mobile responsiveness ---- */
+@media (max-width: 760px) {
+  .dx-jobs,
+  .dx-calm__menu { width: calc(100vw - 20px) !important; max-width: none !important; }
+
+  .dx-jobs { padding-top: 54px; }
+
+  .dx-chat { width: 100vw !important; }
+  .dx-chat__rooms { width: 128px; }
+
+  .dx-zoom, .dx-snd { right: 12px; }
+  .dx-zoom button, .dx-snd button { width: 30px; height: 30px; font-size: 13px; }
+
+  .dixor-chrome { padding: 14px 16px; font-size: 9px; }
+  .dx-breadcrumbs { left: 16px; bottom: 46px; font-size: 9px; }
+  .dx-status { display: none; }
+  .dx-search-btn { top: auto; bottom: 46px; right: 16px; }
+
+  .dx-welcome__title { letter-spacing: 0.22em; margin-right: -0.22em; }
+  .dx-node-label { font-size: 10px; }
+}
