@@ -1568,3 +1568,16 @@ body.dx-quiet .dx-snd { opacity: 0; }
   75%  { opacity: 0.9; }
   100% { transform: translateY(14vh); opacity: 0; }
 }
+/* ---- Tooltip polish ---- */
+.dx-node-label.is-visible {
+  animation: dx-tipin 0.22s cubic-bezier(.2,.9,.3,1.2) both,
+             dx-tipfloat 3.2s ease-in-out 0.22s infinite;
+}
+@keyframes dx-tipin {
+  from { opacity: 0; transform: translate(-50%, calc(-100% - 10px)); }
+  to   { opacity: 1; transform: translate(-50%, calc(-100% - 16px)); }
+}
+@keyframes dx-tipfloat {
+  0%, 100% { margin-top: 0; }
+  50%      { margin-top: -3px; }
+}
