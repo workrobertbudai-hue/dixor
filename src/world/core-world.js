@@ -3,7 +3,7 @@ import { createGlow } from '../visual/glow.js';
 
 /**
  * CORE WORLD V3 - kis energiamag a node-sik ALATT.
- * Szinvaltozo mag, dupla héj, ket energia-gyuru, fenszilankok.
+ * Szinvaltozo mag, dupla hÃ©j, ket energia-gyuru, fenszilankok.
  * (Pulzus ideiglenesen kiveve.)
  */
 export class CoreWorld {
@@ -16,43 +16,43 @@ export class CoreWorld {
       color: 0x0b1420, metalness: 0.92, roughness: 0.22,
       emissive: 0x57e6d9, emissiveIntensity: 0.65,
     });
-    this.core = new THREE.Mesh(new THREE.OctahedronGeometry(0.95, 0), this.coreMat);
+    this.core = new THREE.Mesh(new THREE.OctahedronGeometry(0.48, 0), this.coreMat);
 
     this.shell = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(2.45, 1),
+      new THREE.IcosahedronGeometry(1.25, 1),
       new THREE.MeshBasicMaterial({ color: 0x57e6d9, wireframe: true, transparent: true, opacity: 0.2 })
     );
 
     this.shell2 = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(3.05, 0),
+      new THREE.IcosahedronGeometry(1.55, 0),
       new THREE.MeshBasicMaterial({ color: 0x7aa2ff, wireframe: true, transparent: true, opacity: 0.12 })
     );
 
     this.ringA = new THREE.Mesh(
-      new THREE.TorusGeometry(3.75, 0.03, 10, 160),
+      new THREE.TorusGeometry(1.95, 0.02, 10, 160),
       new THREE.MeshBasicMaterial({ color: 0x57e6d9, transparent: true, opacity: 0.55 })
     );
     this.ringA.rotation.x = Math.PI / 2.3;
 
     this.ringB = new THREE.Mesh(
-      new THREE.TorusGeometry(4.5, 0.02, 10, 180),
+      new THREE.TorusGeometry(2.35, 0.014, 10, 180),
       new THREE.MeshBasicMaterial({ color: 0x9d8cff, transparent: true, opacity: 0.38 })
     );
     this.ringB.rotation.x = Math.PI / 1.8;
     this.ringB.rotation.y = 0.5;
 
-    this.heartGlow = createGlow(0x57e6d9, 4.6, 0.6);
-    this.aura = createGlow(0x7aa2ff, 10, 0.16);
+    this.heartGlow = createGlow(0x57e6d9, 2.4, 0.6);
+    this.aura = createGlow(0x7aa2ff, 5, 0.16);
 
     this.shards = [];
     for (let i = 0; i < 10; i++) {
       const s = new THREE.Mesh(
-        new THREE.TetrahedronGeometry(0.09 + Math.random() * 0.07),
+        new THREE.TetrahedronGeometry(0.05 + Math.random() * 0.04),
         new THREE.MeshBasicMaterial({ color: 0x9fe8ff })
       );
       const a = (i / 10) * Math.PI * 2;
       s.userData = {
-        a, rr: 3.3 + Math.random() * 1.1,
+        a, rr: 1.75 + Math.random() * 0.55,
         vy: (Math.random() - 0.5) * 1.2,
         sp: 0.35 + Math.random() * 0.3,
       };
