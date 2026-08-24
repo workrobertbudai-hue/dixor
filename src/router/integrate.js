@@ -35,6 +35,7 @@ export function setupRouter(app) {
       case 'analyze:compare': app.analyzeView.open(); return true;
       case 'work:employer-insight': app.employerView.open(); return true;
       case 'work:interview-preparation': app.interviewView.open(); return true;
+      case 'work:career-path': app.careerView.open(); return true;
       case 'life:planning': app.lifeView.open('plan'); return true;
       case 'life:travel': app.lifeView.open('travel'); return true;
       case 'life:organization': app.lifeView.open('notes'); return true;

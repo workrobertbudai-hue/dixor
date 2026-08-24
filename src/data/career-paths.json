@@ -1,0 +1,36 @@
+{
+  "version": "0.1.0",
+  "paths": [
+    {
+      "id": "ops",
+      "label": "OPERATIONS TRACK",
+      "steps": [
+        { "id": "o1", "label": "Warehouse Associate", "note": "Master picking accuracy, safety habits and stock awareness.", "skills": ["organization", "reliability"] },
+        { "id": "o2", "label": "Shift Coordinator", "note": "Own a shift: handovers, counts, small-team communication.", "skills": ["time management", "teamwork"] },
+        { "id": "o3", "label": "Team Lead", "note": "Lead 8-12 people; own daily throughput targets.", "skills": ["problem solving", "coaching"] },
+        { "id": "o4", "label": "Operations Supervisor", "note": "Plan capacity across shifts; first budget exposure.", "skills": ["organization", "stress handling"] },
+        { "id": "o5", "label": "Operations Manager", "note": "Run site-level KPIs and partner escalations.", "skills": ["problem solving", "adaptability"] }
+      ]
+    },
+    {
+      "id": "support",
+      "label": "SUPPORT TRACK",
+      "steps": [
+        { "id": "s1", "label": "Support Agent", "note": "First-line quality: clarity, patience, ticket hygiene.", "skills": ["customer interaction", "communication"] },
+        { "id": "s2", "label": "Senior Agent", "note": "Handle escalations; become the pattern-spotter.", "skills": ["stress handling", "multilingual communication"] },
+        { "id": "s3", "label": "Quality Coach", "note": "Review conversations; coach peers with examples.", "skills": ["coaching", "attention to detail"] },
+        { "id": "s4", "label": "Team Manager", "note": "Own schedules, hiring input and team health.", "skills": ["time management", "self-direction"] }
+      ]
+    },
+    {
+      "id": "digital",
+      "label": "DIGITAL TRACK",
+      "steps": [
+        { "id": "d1", "label": "Self-taught Builder", "note": "Small real projects beat certificates. Ship something tiny.", "skills": ["self-driven learning"] },
+        { "id": "d2", "label": "Junior Contributor", "note": "First reviewed pull requests; learn feedback loops.", "skills": ["attention to detail", "adaptability"] },
+        { "id": "d3", "label": "Developer", "note": "Own features end-to-end; join on-call rotation.", "skills": ["problem solving", "self-direction"] },
+        { "id": "d4", "label": "Senior Developer", "note": "Design decisions plus mentoring newcomers.", "skills": ["coaching", "problem solving"] }
+      ]
+    }
+  ]
+}
