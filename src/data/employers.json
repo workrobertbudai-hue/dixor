@@ -1,0 +1,95 @@
+{
+  "version": "0.1.0",
+  "employers": [
+    {
+      "name": "Meridian Logistics",
+      "industry": "Logistics & Supply Chain",
+      "size": "250-500 employees",
+      "founded": 2009,
+      "hq": "Budapest, HU",
+      "about": "Regional freight coordination company running warehouse-to-client delivery for retail partners across Central Europe.",
+      "signals": [
+        { "label": "Company registry entry", "status": "OK" },
+        { "label": "Postings refreshed weekly", "status": "OK" },
+        { "label": "Salary disclosed in every ad", "status": "OK" }
+      ],
+      "openness": ["Training provided", "Career changers welcome", "Transferable skills accepted"],
+      "culture": ["Structured onboarding", "Hybrid schedule", "Internal mobility"]
+    },
+    {
+      "name": "Nordwind Services",
+      "industry": "Business Support Services",
+      "size": "100-250 employees",
+      "founded": 2014,
+      "hq": "Budapest, HU",
+      "about": "Multilingual customer support partner serving German and English speaking business clients.",
+      "signals": [
+        { "label": "Company registry entry", "status": "OK" },
+        { "label": "Responds to applications", "status": "OK" },
+        { "label": "Transparent hiring process", "status": "PARTIAL" }
+      ],
+      "openness": ["No formal qualification required", "Entry-level candidates welcome"],
+      "culture": ["Coaching culture", "Language courses", "Team events"]
+    },
+    {
+      "name": "Vertex Supply",
+      "industry": "Warehousing & Distribution",
+      "size": "500+ employees",
+      "founded": 2001,
+      "hq": "Gyor, HU",
+      "about": "Large-scale distribution hub operating picking, packing and regional transport lines.",
+      "signals": [
+        { "label": "Company registry entry", "status": "OK" },
+        { "label": "Long-term posting history", "status": "OK" },
+        { "label": "Safety record published", "status": "OK" }
+      ],
+      "openness": ["Immediate start possible", "Shift premiums", "Training provided"],
+      "culture": ["Shift teams", "Clear progression steps", "On-site canteen"]
+    },
+    {
+      "name": "Helios Group",
+      "industry": "Data & Back Office",
+      "size": "50-100 employees",
+      "founded": 2017,
+      "hq": "Budapest, HU",
+      "about": "Data quality and records management provider working with insurance and utility clients.",
+      "signals": [
+        { "label": "Company registry entry", "status": "OK" },
+        { "label": "Consistent job descriptions", "status": "OK" },
+        { "label": "Public client references", "status": "PARTIAL" }
+      ],
+      "openness": ["Part-time friendly", "Flexible hours", "No experience required"],
+      "culture": ["Quiet office", "Accuracy-first mindset", "Study support"]
+    },
+    {
+      "name": "Kite Digital",
+      "industry": "Software & Digital Products",
+      "size": "20-50 employees",
+      "founded": 2020,
+      "hq": "Remote-first, EU",
+      "about": "Product studio building dashboards and interfaces for European SaaS clients.",
+      "signals": [
+        { "label": "Open-source contributions verifiable", "status": "OK" },
+        { "label": "Team profiles public", "status": "OK" },
+        { "label": "Revenue-backed postings", "status": "PARTIAL" }
+      ],
+      "openness": ["Portfolio over degree", "Remote friendly", "Mentorship provided"],
+      "culture": ["Async communication", "Code review culture", "Learning budget"]
+    },
+    {
+      "name": "Aurora Travel",
+      "industry": "Travel & Tourism",
+      "size": "50-100 employees",
+      "founded": 2011,
+      "hq": "Budapest, HU",
+      "about": "Travel operator assembling package tours and managing partner itineraries across Europe.",
+      "signals": [
+        { "label": "Travel agency licence", "status": "OK" },
+        { "label": "Seasonal rehiring pattern", "status": "OK" },
+        { "label": "Contract transparency", "status": "PARTIAL" }
+      ],
+      "openness": ["Career changers welcome", "Training provided", "Student schedules considered"],
+      "culture": ["Destination knowledge sharing", "Peak-season rhythm", "Travel discounts"]
+    }
+  ]
+}

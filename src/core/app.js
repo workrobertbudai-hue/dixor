@@ -32,6 +32,7 @@ import { LearnView } from '../ui/learn-view.js';
 import { PersonalView } from '../ui/personal-view.js';
 import { EntityView } from '../ui/entity-view.js';
 import { AnalyzeView } from '../ui/analyze-view.js';
+import { EmployerInsightView } from '../ui/employer-view.js';
 import { LifeView } from '../ui/life-view.js';
 import { CreateView } from '../ui/create-view.js';
 import { Router } from '../router/router.js';
@@ -101,6 +102,7 @@ export class App {
     });
     this.entityView = new EntityView();
     this.analyzeView = new AnalyzeView();
+    this.employerView = new EmployerInsightView({ stateStore: this.stateStore });
     this.lifeView = new LifeView({ stateStore: this.stateStore });
     this.createView = new CreateView({ stateStore: this.stateStore });
 
@@ -119,7 +121,8 @@ export class App {
       this.entityView,
       this.analyzeView,
       this.lifeView,
-      this.createView
+      this.createView,
+      this.employerView
     );
 
     this.breadcrumbs = new Breadcrumbs({
@@ -189,6 +192,7 @@ export class App {
           if (def.id === 'analyze:compare') { this.analyzeView.open(); return; }
           if (def.id.startsWith('life:')) { const mt = { 'life:planning': 'plan', 'life:travel': 'travel', 'life:organization': 'notes' }[def.id] || 'plan'; this.lifeView.open(mt); return; }
           if (def.id.startsWith('create:')) { const mt = { 'create:documents': 'doc', 'create:writing': 'scratch', 'create:presentations': 'slides', 'create:images': 'board' }[def.id] || 'doc'; this.createView.open(mt); return; }
+          if (def.id === 'work:employer-insight') { Router.push({view:'module',module:'work',fn:'employer-insight'}); this.employerView.open(); return; }
           if (def.id.endsWith(':community-chat')) { this.chatView.open(def.moduleId); return; }
           this.actionPanel.show(def, getModuleById(def.moduleId));
         } else {

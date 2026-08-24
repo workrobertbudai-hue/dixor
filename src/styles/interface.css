@@ -1337,3 +1337,46 @@ body.dx-quiet .dx-presence { opacity: 0; }
 }
 .dx-zoom button:hover { border-color: rgba(87, 230, 217, 0.7); }
 body.dx-quiet .dx-zoom { opacity: 0; }
+/* ---- Employer insight ---- */
+.dx-emp__head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.dx-emp__head b { font-size: 14px; letter-spacing: 0.18em; color: var(--dx-text); font-weight: 600; }
+
+.dx-emp__sig { list-style: none; }
+.dx-emp__sig li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(87,230,217,0.08);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--dx-text-dim);
+}
+.dx-emp__sig li b { margin-left: auto; font-size: 8px; letter-spacing: 0.18em; color: var(--dx-text-dim); }
+.dx-emp__dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(232,241,242,0.25);
+  flex: none;
+}
+.dx-emp__dot.is-ok { background: #7fe3b2; box-shadow: 0 0 8px rgba(127,227,178,0.55); }
+
+.dx-emp__job {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid rgba(232,241,242,0.09);
+  background: rgba(255,255,255,0.02);
+  margin-bottom: 8px;
+}
+.dx-emp__job b { display: block; font-size: 11px; letter-spacing: 0.06em; color: var(--dx-text); font-weight: 500; }
+.dx-emp__job span { display: block; font-size: 9px; letter-spacing: 0.08em; color: var(--dx-text-dim); margin-top: 2px; }
+.dx-emp__job em {
+  font-style: normal;
+  color: var(--dx-accent);
+  font-size: 13px;
+  font-weight: 600;
+  flex: none;
+}
+.dx-emp .dx-chat__rooms { width: 150px; }
