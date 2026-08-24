@@ -15,6 +15,7 @@ import { ClickController } from '../interaction/click.js';
 import { ZoomController } from '../interaction/zoom.js';
 import { OrbitController } from '../interaction/orbit.js';
 import { SoundSystem } from '../audio/sound.js';
+import { DwellController } from '../interaction/dwell.js';
 import { NodeLabel } from '../ui/node-label.js';
 import { WelcomeScreen } from '../ui/welcome-screen.js';
 import { SearchInterface } from '../ui/search-interface.js';
@@ -175,6 +176,7 @@ export class App {
     this.zoomCtl = new ZoomController(this);
     this.orbitCtl = new OrbitController(this);
     this.soundCtl = new SoundSystem(this);
+    this.dwellCtl = new DwellController(this);
     this.raycaster = new RaycasterService();
     this.label = new NodeLabel();
     this.hover = new HoverController({ dom: this.renderer.domElement, label: this.label });
@@ -218,10 +220,11 @@ export class App {
       },
     });
 
-    this.registerUpdate(() => {
+    this.registerUpdate((dt) => {
       const clear = () => {
         this.hover.update(null, this.mouse);
         this.click.update(null);
+        this.dwellCtl ? this.dwellCtl.reset() : null;
       };
 
       if (this.welcome.isOpen) return clear();
@@ -239,6 +242,7 @@ export class App {
       const node = hit ? hit.object.userData.nodeRef : null;
       this.hover.update(node, this.mouse);
       this.click.update(node);
+      this.dwellCtl ? this.dwellCtl.update(dt, node, this.mouse) : null;
     });
 
     setupRouter(this);
