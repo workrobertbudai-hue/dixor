@@ -46,7 +46,8 @@ export class ConnectionWeb {
       const active = c.node === hoveredNode;
       if (active) activeLine = c;
 
-      const target = active ? 0.55 : 0.07 + Math.sin(t * 1.2 + c.node.orbit.angle * 2.0) * 0.02;
+      const distFade = THREE.MathUtils.clamp(1 - (c.node.group.position.length() - 7) / 6, 0.25, 1);
+      const target = active ? 0.55 : (0.07 + Math.sin(t * 1.2 + c.node.orbit.angle * 2.0) * 0.02) * distFade;
       c.mat.opacity += (target - c.mat.opacity) * Math.min(1, dt * 6);
     }
 

@@ -1541,3 +1541,30 @@ body.dx-quiet .dx-zoom { opacity: 0; }
 }
 .dx-snd button:hover { border-color: rgba(87, 230, 217, 0.7); }
 body.dx-quiet .dx-snd { opacity: 0; }
+/* ---- Veil v2: depth gradient + scanline ---- */
+.dx-veil {
+  background:
+    linear-gradient(180deg, #071120 0%, #04070c 60%, #061018 100%);
+}
+.dx-veil::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg,
+              transparent,
+              rgba(87,230,217,0.85),
+              rgba(122,162,255,0.5),
+              transparent);
+  opacity: 0;
+}
+.dx-veil.is-on::after {
+  animation: dx-veilscan 0.9s ease-in-out infinite;
+}
+@keyframes dx-veilscan {
+  0%   { transform: translateY(-14vh); opacity: 0; }
+  25%  { opacity: 0.9; }
+  75%  { opacity: 0.9; }
+  100% { transform: translateY(14vh); opacity: 0; }
+}
