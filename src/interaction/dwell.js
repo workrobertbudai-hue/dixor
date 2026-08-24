@@ -6,8 +6,8 @@
 export class DwellController {
   constructor(app) {
     this.app = app;
-    this.enabled = app.stateStore.getKV('dwellOn', false) === true;
-    this.DWELL_MS = 900;
+    this.enabled = app.stateStore.getKV('dwellOn', true) === true;
+    this.DWELL_MS = 1600;
     this.node = null;
     this.progress = 0;
 
