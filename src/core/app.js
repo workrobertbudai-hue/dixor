@@ -46,6 +46,7 @@ import { BackToCore } from '../navigation/back-to-core.js';
 import { NavigationManager } from '../navigation/navigation-manager.js';
 import { AppState } from '../state/app-state.js';
 import { ConnectionWeb } from '../visual/connections.js';
+import { createCosmos } from '../visual/cosmos.js';
 
 export class App {
   constructor(container) {
@@ -67,9 +68,11 @@ export class App {
 
     createLights(this.scene);
 
+    const cosmos = createCosmos(this.scene);
     const environment = createEnvironment();
     this.scene.add(environment.group);
     this.registerUpdate(environment.update);
+    this.registerUpdate(cosmos.update);
 
     this.coreWorld = new CoreWorld();
     this.scene.add(this.coreWorld.group);
