@@ -38,7 +38,7 @@ function moonTexture() {
 
 /**
  * LIVING COSMOS v5
- * - tuzes nap (csóvák NÉLKÜL, csak lobogo korona)
+ * - tuzes nap (csÃ³vÃ¡k NÃ‰LKÃœL, csak lobogo korona)
  * - krateres hold
  * - villogo csillagok
  * - ASZTEROIDAK: teljes feluletrol, minden iranybol, LASSAN
@@ -141,12 +141,12 @@ export function createCosmos(scene) {
     for (let i = 0; i < count; i++) {
       const arm = i % arms;
       const tt = Math.pow(Math.random(), 1.6);
-      const r = 1.6 + tt * 17;
+      const r = 1.6 + tt * 34;
       const angle = arm * (Math.PI * 2 / arms) + tt * 4.4 + (Math.random() - 0.5) * 0.38;
       positions[i * 3]     = Math.cos(angle) * r + (Math.random() - 0.5) * 1.4;
       positions[i * 3 + 1] = (Math.random() - 0.5) * (2.4 - tt * 1.6);
       positions[i * 3 + 2] = Math.sin(angle) * r + (Math.random() - 0.5) * 1.4;
-      const c = cIn.clone().lerp(cOut, tt);
+      const c = cIn.clone().lerp(cOut, tt).multiplyScalar(1 - tt * 0.78);
       colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
     }
 
@@ -155,13 +155,13 @@ export function createCosmos(scene) {
     geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const mat = new THREE.PointsMaterial({
-      size: 0.22, transparent: true, opacity: 0.85,
+      size: 0.27, transparent: true, opacity: 0.85,
       blending: THREE.AdditiveBlending, depthWrite: false,
       vertexColors: true, fog: false,
     });
 
     const pts = new THREE.Points(geo, mat);
-    pts.position.set(-58, 40, -120);
+    pts.position.set(0, 4, -165);
     pts.rotation.z = 0.55;
     pts.rotation.x = 0.4;
 
@@ -294,7 +294,7 @@ export function createCosmos(scene) {
     moonGroup.position.x = 34 + Math.sin(t * 0.03) * 7;
     moonGroup.position.y = 17 + Math.cos(t * 0.024) * 4;
 
-    galaxy.rotation.y += dt * 0.012;
+    galaxy.rotation.y += dt * 0.02;
     nebulas.forEach((n, i) => {
       n.material.opacity = (i % 2 === 0 ? 0.13 : 0.11) + Math.sin(t * 0.25 + i * 1.9) * 0.04;
     });

@@ -3,12 +3,12 @@ import { MODULE_LIST } from './node-data.js';
 import { createVisual } from './node-factory.js';
 import { createGlow } from '../visual/glow.js';
 
-const NODE_SCALE = 1.2;
+const NODE_SCALE = 0.88;
 
 /**
  * NODE MANAGER - sajat sugar-savok + lassu paralya-korozes.
  * Minden node sajat tempoban aramlk a gyuru menten (finoman lathatoan),
- * es halvÃ¡nyan lebeg fel-le. A halo es a hitbox egyutt koveti.
+ * es halvÃƒÂ¡nyan lebeg fel-le. A halo es a hitbox egyutt koveti.
  */
 export class NodeManager {
   constructor(scene) {
@@ -46,7 +46,7 @@ export class NodeManager {
       node.hitbox.userData.nodeRef = node;
       node.group.add(node.hitbox);
 
-      node.halo = createGlow(def.accent, 5.2 * NODE_SCALE, 0.2);
+      node.halo = createGlow(def.accent, 4.4 * NODE_SCALE, 0.12);
       node.group.add(node.halo);
 
       this.group.add(node.group);
@@ -81,7 +81,7 @@ export class NodeManager {
       }
 
       n.halo.material.opacity =
-        0.18 + (n.scaleCur - 1) * 1.1 + n.pulse * 0.45 + Math.sin(t * 1.1) * 0.02;
+        0.11 + (n.scaleCur - 1) * 1.1 + n.pulse * 0.45 + Math.sin(t * 1.1) * 0.02;
 
       if (n.customUpdate) n.customUpdate(dt, t, n.group);
       n.pulse = Math.max(0, n.pulse - dt * 2.2);
