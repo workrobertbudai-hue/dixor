@@ -1,0 +1,57 @@
+:root {
+  --dx-bg: #04070c;
+  --dx-accent: #57e6d9;   /* teal — elsődleges akcent */
+  --dx-accent-2: #7aa2ff; /* soft blue — másodlagos */
+  --dx-text: #e8f1f2;
+  --dx-text-dim: rgba(232, 241, 242, 0.45);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--dx-bg);
+  color: var(--dx-text);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+#app { position: fixed; inset: 0; }
+#app canvas { display: block; }
+
+.dixor-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center,
+              transparent 55%,
+              rgba(0, 0, 0, 0.45) 100%);
+}
+
+/* ---- Interface chrome ---- */
+.dixor-chrome {
+  position: fixed;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px;
+  pointer-events: none;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+  text-transform: uppercase;
+  animation: dx-fade-in 1.6s ease both;
+}
+.dixor-chrome--top { top: 0; }
+.dixor-chrome--bottom { bottom: 0; }
+
+.dixor-brand { color: var(--dx-accent); font-weight: 600; }
+.dixor-crumb,
+.dixor-status,
+.dixor-version { color: var(--dx-text-dim); }
+
+@keyframes dx-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}

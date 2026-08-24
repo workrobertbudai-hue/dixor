@@ -1,0 +1,52 @@
+{
+  "version": "0.1.0",
+  "languages": [
+    {
+      "id": "spanish",
+      "label": "SPANISH",
+      "tagline": "Espanol - everyday basics",
+      "words": [
+        { "w": "hola", "t": "hello" },
+        { "w": "gracias", "t": "thank you" },
+        { "w": "adios", "t": "goodbye" },
+        { "w": "por favor", "t": "please" },
+        { "w": "agua", "t": "water" },
+        { "w": "casa", "t": "house" },
+        { "w": "amigo", "t": "friend" },
+        { "w": "trabajo", "t": "work" },
+        { "w": "hoy", "t": "today" },
+        { "w": "siempre", "t": "always" }
+      ]
+    },
+    {
+      "id": "german",
+      "label": "GERMAN",
+      "tagline": "Deutsch - first contact",
+      "words": [
+        { "w": "hallo", "t": "hello" },
+        { "w": "danke", "t": "thank you" },
+        { "w": "tschuess", "t": "goodbye" },
+        { "w": "bitte", "t": "please" },
+        { "w": "wasser", "t": "water" },
+        { "w": "haus", "t": "house" },
+        { "w": "freund", "t": "friend" },
+        { "w": "arbeit", "t": "work" }
+      ]
+    },
+    {
+      "id": "french",
+      "label": "FRENCH",
+      "tagline": "Francais - gentle start",
+      "words": [
+        { "w": "bonjour", "t": "hello" },
+        { "w": "merci", "t": "thank you" },
+        { "w": "au revoir", "t": "goodbye" },
+        { "w": "eau", "t": "water" },
+        { "w": "maison", "t": "house" },
+        { "w": "ami", "t": "friend" },
+        { "w": "travail", "t": "work" },
+        { "w": "demain", "t": "tomorrow" }
+      ]
+    }
+  ]
+}

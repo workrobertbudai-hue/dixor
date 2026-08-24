@@ -1,0 +1,132 @@
+{
+  "version": "0.1.0",
+  "trustLayer": { "filteredSuspicious": 3 },
+  "jobs": [
+    {
+      "id": "job-ops-coordinator",
+      "title": "Junior Operations Coordinator",
+      "company": "Meridian Logistics",
+      "verified": true,
+      "location": "Budapest - Hybrid",
+      "salary": "480-560k HUF/mo",
+      "type": "Full-time",
+      "postedDaysAgo": 2,
+      "matchScore": 92,
+      "badges": ["TRAINING PROVIDED", "SALARY TRANSPARENT"],
+      "openToPotential": true,
+      "why": {
+        "strongMatches": 6,
+        "missingRequirements": 2,
+        "transferableSkills": ["customer interaction", "organization", "multilingual communication"],
+        "trainingAvailable": true,
+        "scheduleCompatible": true
+      },
+      "summary": "Coordinate daily warehouse-to-client shipments and keep regional delivery timelines on track."
+    },
+    {
+      "id": "job-support-de",
+      "title": "Customer Support Specialist (DE/EN)",
+      "company": "Nordwind Services",
+      "verified": true,
+      "location": "Budapest - Hybrid",
+      "salary": "450-520k HUF/mo",
+      "type": "Full-time",
+      "postedDaysAgo": 5,
+      "matchScore": 86,
+      "badges": ["CAREER CHANGER FRIENDLY"],
+      "openToPotential": true,
+      "why": {
+        "strongMatches": 5,
+        "missingRequirements": 1,
+        "transferableSkills": ["communication", "stress handling", "multilingual communication"],
+        "trainingAvailable": false,
+        "scheduleCompatible": true
+      },
+      "summary": "Support business clients in German and English across phone, chat and email channels."
+    },
+    {
+      "id": "job-wh-lead",
+      "title": "Warehouse Team Lead",
+      "company": "Vertex Supply",
+      "verified": true,
+      "location": "Gyor - On-site",
+      "salary": "520-600k HUF/mo",
+      "type": "Full-time",
+      "postedDaysAgo": 1,
+      "matchScore": 84,
+      "badges": ["IMMEDIATE START", "SALARY TRANSPARENT"],
+      "openToPotential": false,
+      "why": {
+        "strongMatches": 5,
+        "missingRequirements": 2,
+        "transferableSkills": ["teamwork", "time management", "problem solving"],
+        "trainingAvailable": true,
+        "scheduleCompatible": false
+      },
+      "summary": "Lead a 12-person picking team and own daily throughput and safety targets."
+    },
+    {
+      "id": "job-data-qc",
+      "title": "Data Quality Assistant",
+      "company": "Helios Group",
+      "verified": true,
+      "location": "Budapest - On-site",
+      "salary": "380-430k HUF/mo",
+      "type": "Part-time",
+      "postedDaysAgo": 7,
+      "matchScore": 81,
+      "badges": ["NO EXPERIENCE REQUIRED", "FLEXIBLE HOURS"],
+      "openToPotential": true,
+      "why": {
+        "strongMatches": 5,
+        "missingRequirements": 1,
+        "transferableSkills": ["organization", "attention to detail"],
+        "trainingAvailable": true,
+        "scheduleCompatible": true
+      },
+      "summary": "Review and correct client records; flag patterns for the automation team."
+    },
+    {
+      "id": "job-fe-dev",
+      "title": "Frontend Developer (Junior)",
+      "company": "Kite Digital",
+      "verified": true,
+      "location": "Remote (EU)",
+      "salary": "600-750k HUF/mo",
+      "type": "Full-time",
+      "postedDaysAgo": 3,
+      "matchScore": 78,
+      "badges": ["PORTFOLIO OVER DEGREE", "REMOTE"],
+      "openToPotential": true,
+      "why": {
+        "strongMatches": 4,
+        "missingRequirements": 2,
+        "transferableSkills": ["self-driven learning", "attention to detail"],
+        "trainingAvailable": true,
+        "scheduleCompatible": true
+      },
+      "summary": "Build interface components for client dashboards; code review culture, mentorship provided."
+    },
+    {
+      "id": "job-travel-agent",
+      "title": "Travel Operations Agent",
+      "company": "Aurora Travel",
+      "verified": true,
+      "location": "Budapest - Hybrid",
+      "salary": "420-500k HUF/mo",
+      "type": "Full-time",
+      "postedDaysAgo": 4,
+      "matchScore": 74,
+      "badges": ["CAREER CHANGER FRIENDLY", "TRAINING PROVIDED"],
+      "openToPotential": true,
+      "why": {
+        "strongMatches": 4,
+        "missingRequirements": 2,
+        "transferableSkills": ["customer interaction", "adaptability", "organization"],
+        "trainingAvailable": true,
+        "scheduleCompatible": true
+      },
+      "summary": "Assemble travel packages, coordinate with partners and handle itinerary changes."
+    }
+  ]
+}

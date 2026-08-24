@@ -1,0 +1,17 @@
+{
+  "version": "0.1.0",
+  "trailModel": [
+    "WORLD",
+    "AREA",
+    "FUNCTION",
+    "ACTION"
+  ],
+  "root": {
+    "id": "core",
+    "label": "DIXOR"
+  },
+  "transition": {
+    "durationSec": 1.4,
+    "easing": "cubic-out"
+  }
+}

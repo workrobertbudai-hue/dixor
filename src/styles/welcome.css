@@ -1,0 +1,90 @@
+.dx-welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 42%, #0a1622 0%, #04070c 70%);
+  transition: opacity 0.9s ease;
+}
+.dx-welcome.is-leaving { opacity: 0; pointer-events: none; }
+.dx-welcome.is-gone { display: none; }
+
+.dx-welcome__content { text-align: center; padding: 0 24px; }
+
+.dx-welcome__title {
+  font-size: clamp(56px, 11vw, 128px);
+  font-weight: 300;
+  letter-spacing: 0.38em;
+  margin-right: -0.38em; /* optikai középre */
+  color: var(--dx-text);
+  text-shadow: 0 0 40px rgba(87, 230, 217, 0.25);
+}
+
+.dx-welcome__kicker {
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  margin-right: -0.5em;
+  color: var(--dx-accent);
+  margin-bottom: 22px;
+}
+
+.dx-welcome__sub {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  margin-right: -0.32em;
+  color: var(--dx-text-dim);
+  margin-top: 20px;
+}
+
+.dx-welcome__enter {
+  margin-top: 52px;
+  padding: 13px 44px;
+  background: transparent;
+  border: 1px solid rgba(87, 230, 217, 0.35);
+  color: var(--dx-accent);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.dx-welcome__enter:hover {
+  border-color: rgba(87, 230, 217, 0.9);
+  box-shadow: 0 0 24px rgba(87, 230, 217, 0.15), inset 0 0 14px rgba(87, 230, 217, 0.06);
+}
+
+.dx-welcome__hint {
+  margin-top: 26px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--dx-text-dim);
+}
+
+.dx-welcome__footer {
+  position: absolute;
+  bottom: 22px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--dx-text-dim);
+}
+
+.dx-welcome__hairline {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(87,230,217,0.4), transparent);
+  animation: dx-hairline 2.2s cubic-out ease both;
+}
+.dx-welcome__hairline--top    { top: 64px;  width: min(520px, 70vw); }
+.dx-welcome__hairline--bottom { bottom: 64px; width: min(520px, 70vw); animation-delay: 0.15s; }
+
+@keyframes dx-hairline {
+  from { opacity: 0; width: 0; }
+  to   { opacity: 1; }
+}

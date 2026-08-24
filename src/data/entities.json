@@ -1,0 +1,101 @@
+{
+  "version": "0.1.0",
+  "entities": [
+    {
+      "id": "nvidia",
+      "label": "NVIDIA",
+      "type": "COMPANY",
+      "tagline": "Accelerated computing pioneer",
+      "overview": "NVIDIA builds the hardware and software layer behind modern accelerated computing. Originally a gaming graphics company, its CUDA ecosystem turned GPUs into general-purpose engines for artificial intelligence.",
+      "timeline": [
+        { "year": "1993", "label": "Founded by Jensen Huang, Chris Malachowsky and Curtis Priem" },
+        { "year": "1999", "label": "GeForce 256 marketed as the world's first GPU" },
+        { "year": "2006", "label": "CUDA platform released - GPUs become programmable" },
+        { "year": "2016", "label": "Volta architecture targets deep learning workloads" },
+        { "year": "2022", "label": "Generative AI boom drives record data-center demand" },
+        { "year": "2024", "label": "Ranks among the most valuable companies worldwide" }
+      ],
+      "people": [
+        { "name": "Jensen Huang", "role": "Co-founder & CEO" },
+        { "name": "Chris Malachowsky", "role": "Co-founder" },
+        { "name": "Curtis Priem", "role": "Co-founder" }
+      ],
+      "products": ["GeForce", "RTX", "CUDA", "DGX", "Omniverse"],
+      "related": ["openai"],
+      "sources": [
+        { "label": "Company annual reports & public records", "confidence": "HIGH" },
+        { "label": "Technology press coverage", "confidence": "MEDIUM" }
+      ]
+    },
+    {
+      "id": "openai",
+      "label": "OpenAI",
+      "type": "COMPANY",
+      "tagline": "Frontier AI research lab",
+      "overview": "OpenAI researches and deploys large language models. Its ChatGPT product brought conversational AI to hundreds of millions of users and reshaped public expectations of software.",
+      "timeline": [
+        { "year": "2015", "label": "Founded as a non-profit AI research lab" },
+        { "year": "2018", "label": "First GPT language model published" },
+        { "year": "2020", "label": "GPT-3 demonstrates few-shot learning at scale" },
+        { "year": "2022", "label": "ChatGPT launches - fastest-growing consumer app of its time" },
+        { "year": "2023", "label": "GPT-4 brings multimodal capabilities" }
+      ],
+      "people": [
+        { "name": "Sam Altman", "role": "CEO" },
+        { "name": "Greg Brockman", "role": "President & Co-founder" },
+        { "name": "Ilya Sutskever", "role": "Co-founder, early chief scientist" }
+      ],
+      "products": ["ChatGPT", "GPT-4", "DALL-E", "Whisper"],
+      "related": ["nvidia"],
+      "sources": [
+        { "label": "Official announcements & model cards", "confidence": "HIGH" },
+        { "label": "Media reporting on governance changes", "confidence": "MEDIUM" }
+      ]
+    },
+    {
+      "id": "quantum-computing",
+      "label": "QUANTUM COMPUTING",
+      "type": "TECHNOLOGY",
+      "tagline": "Computation beyond classical bits",
+      "overview": "Quantum computing exploits superposition and entanglement to process information in ways classical machines cannot. Practical advantage remains work-in-progress, targeted at chemistry, cryptography and optimization.",
+      "timeline": [
+        { "year": "1980", "label": "Richard Feynman proposes quantum simulation" },
+        { "year": "1994", "label": "Peter Shor's algorithm threatens classical encryption" },
+        { "year": "2019", "label": "Google claims first quantum computational advantage" },
+        { "year": "2023", "label": "Logical qubit error correction milestones reported" }
+      ],
+      "people": [
+        { "name": "Richard Feynman", "role": "Conceptual pioneer" },
+        { "name": "Peter Shor", "role": "Algorithmic breakthrough" },
+        { "name": "John Preskill", "role": "NISQ-era theorist" }
+      ],
+      "products": ["Qubits", "Superconducting processors", "Error correction"],
+      "related": [],
+      "sources": [
+        { "label": "Peer-reviewed physics literature", "confidence": "HIGH" },
+        { "label": "Vendor roadmap claims", "confidence": "LOW-MEDIUM" }
+      ]
+    },
+    {
+      "id": "three-js",
+      "label": "THREE.JS",
+      "type": "TECHNOLOGY",
+      "tagline": "3D in the browser - the engine behind this very interface",
+      "overview": "Three.js is an open-source JavaScript library that renders interactive 3D graphics through WebGL. This DIXOR concept build runs entirely on it.",
+      "timeline": [
+        { "year": "2010", "label": "First release by Ricardo Cabello (Mr.doob)" },
+        { "year": "2011", "label": "WebGL standard enables hardware-accelerated browser 3D" },
+        { "year": "2015", "label": "ES modules era begins; ecosystem expands rapidly" },
+        { "year": "TODAY", "label": "Powers countless product configurators, maps and spatial UIs" }
+      ],
+      "people": [
+        { "name": "Ricardo Cabello", "role": "Creator & maintainer" }
+      ],
+      "products": ["Scene graph", "WebGL renderer", "Material system"],
+      "related": [],
+      "sources": [
+        { "label": "Official documentation & repository history", "confidence": "HIGH" }
+      ]
+    }
+  ]
+}

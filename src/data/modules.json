@@ -1,0 +1,149 @@
+﻿{
+  "version": "0.1.0",
+  "source": "DIXOR_MASTER_CONCEPT Â§4â€“Â§31",
+  "core": {
+    "id": "core",
+    "label": "DIXOR",
+    "position": [
+      0,
+      0,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "id": "work",
+      "label": "WORK",
+      "tagline": "Human-potential matching",
+      "geometry": "gyro-frame",
+      "accent": "#57e6d9",
+      "status": "planned",
+      "functions": [
+        "Find Jobs",
+        "Active Matches",
+        "Job Radar",
+        "Open To Me",
+        "My Applications",
+        "My Profile",
+        "Discover My Skills"
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "LEARN",
+      "tagline": "Languages Â· Skills Â· Practice",
+      "geometry": "layered",
+      "accent": "#9d8cff",
+      "status": "planned",
+      "functions": [
+        "Languages",
+        "Skills",
+        "Courses",
+        "Practice",
+        "Progress"
+      ]
+    },
+    {
+      "id": "discover",
+      "label": "DISCOVER",
+      "tagline": "Search Â· Knowledge Â· Exploration",
+      "geometry": "branching",
+      "accent": "#7aa2ff",
+      "status": "planned",
+      "functions": [
+        "Search",
+        "Topics",
+        "Explore",
+        "Research",
+        "Timeline",
+        "Why?",
+        "What If?"
+      ]
+    },
+    {
+      "id": "life",
+      "label": "LIFE",
+      "tagline": "Everyday planning & organization",
+      "geometry": "orbit-ring",
+      "accent": "#ffd479",
+      "status": "planned",
+      "functions": [
+        "Planning",
+        "Travel",
+        "Organization"
+      ]
+    },
+    {
+      "id": "wellbeing",
+      "label": "WELLBEING",
+      "tagline": "Focus Â· Calm Â· Reset",
+      "geometry": "concentric-soft",
+      "accent": "#7fe3b2",
+      "status": "planned",
+      "functions": [
+        "60-second Reset",
+        "Breathing",
+        "Quiet Mode",
+        "Focus Session",
+        "Break Reminder"
+      ]
+    },
+    {
+      "id": "create",
+      "label": "CREATE",
+      "tagline": "Documents Â· Writing Â· Images",
+      "geometry": "assembling",
+      "accent": "#ff9e9e",
+      "status": "planned",
+      "functions": [
+        "Documents",
+        "Writing",
+        "Presentations",
+        "Images"
+      ]
+    },
+    {
+      "id": "explore",
+      "label": "EXPLORE",
+      "tagline": "Open-ended discovery",
+      "geometry": "scatter-field",
+      "accent": "#6fc9ff",
+      "status": "planned",
+      "functions": [
+        "Subjects",
+        "Concepts",
+        "Areas of Interest"
+      ]
+    },
+    {
+      "id": "analyze",
+      "label": "ANALYZE",
+      "tagline": "Compare Â· Understand Â· Decide",
+      "geometry": "faceted-crystal",
+      "accent": "#c9d1e0",
+      "status": "planned",
+      "functions": [
+        "Compare",
+        "Research",
+        "Decision Support",
+        "What-if"
+      ]
+    },
+    {
+      "id": "personal",
+      "label": "PERSONAL",
+      "tagline": "Profile Â· Progress Â· Control",
+      "geometry": "core-sphere",
+      "accent": "#f5f1e8",
+      "status": "planned",
+      "functions": [
+        "Profile",
+        "History",
+        "Saved",
+        "Progress",
+        "Preferences"
+      ]
+    }
+  ]
+}
+

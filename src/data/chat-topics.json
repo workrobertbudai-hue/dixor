@@ -1,0 +1,125 @@
+{
+  "version": "0.1.0",
+  "topics": [
+    {
+      "id": "lobby", "label": "LOBBY", "module": null, "members": 52,
+      "users": ["Alex", "Mia", "Sam", "Noor", "Tom"],
+      "lines": [
+        "Just found the search - press slash and everything is there.",
+        "Which module are you spending most time in?",
+        "This place feels calmer than any social feed.",
+        "Anyone else keeping Quiet Mode on all day?"
+      ]
+    },
+    {
+      "id": "job-hunting", "label": "JOB HUNTING", "module": "work", "members": 33,
+      "users": ["Anna", "David", "Mark", "Reka", "Chris"],
+      "lines": [
+        "The Trust Layer note literally saved me from a sketchy listing today.",
+        "Job Radar flagged a 91% match this morning - interview on Thursday!",
+        "Tip: fill your profile skills properly, the matching gets much better.",
+        "Open To Me is underrated - three employers accepted my non-linear path."
+      ]
+    },
+    {
+      "id": "interview-prep", "label": "INTERVIEW PREP", "module": "work", "members": 18,
+      "users": ["Laura", "Peter", "Zoe", "Ivan"],
+      "lines": [
+        "Practice explaining your transferable skills out loud - it helps.",
+        "They asked why I switched industries. My DIXOR profile summary helped a lot.",
+        "STAR method still works wonders.",
+        "How do you explain a career gap honestly?"
+      ]
+    },
+    {
+      "id": "career-change", "label": "CAREER CHANGE", "module": "work", "members": 26,
+      "users": ["Julia", "Omar", "Nina", "Felix"],
+      "lines": [
+        "From hospitality into logistics - the skills discovery nailed it.",
+        "Potential over paperwork. Finally somebody gets it.",
+        "Two years of customer service counted more than I expected.",
+        "Anyone moved from warehouse to data quality roles?"
+      ]
+    },
+    {
+      "id": "spanish-practice", "label": "SPANISH PRACTICE", "module": "learn", "members": 17,
+      "users": ["Carla", "Mateo", "Ingrid", "Ben"],
+      "lines": [
+        "Como se dice 'good luck'? - Suerte!",
+        "Finished my first Spanish session today: 8 of 10 words known.",
+        "Diez minutos al dia, eso es todo lo que necesitas.",
+        "Anyone wants to practice small talk here?"
+      ]
+    },
+    {
+      "id": "german-corner", "label": "GERMAN CORNER", "module": "learn", "members": 11,
+      "users": ["Klaus", "Sophie", "Ravi"],
+      "lines": [
+        "Der Quick Test ist gar nicht so leicht!",
+        "Ich lerne jeden Tag vier Woerter - kleine Schritte.",
+        "Tschuess bis morgen!",
+        "Wie sagt man 'application' auf Deutsch? - Die Bewerbung."
+      ]
+    },
+    {
+      "id": "study-methods", "label": "STUDY METHODS", "module": "learn", "members": 14,
+      "users": ["Emma", "Yusuf", "Lena"],
+      "lines": [
+        "Short sessions beat marathons - confirmed again.",
+        "Flashcards in the morning, quick test at night. Works great.",
+        "Spaced repetition is the cheat code.",
+        "I review mistakes right after the session, retention doubled."
+      ]
+    },
+    {
+      "id": "calm-corner", "label": "CALM CORNER", "module": "wellbeing", "members": 21,
+      "users": ["Aria", "Jonas", "Mei", "Paul"],
+      "lines": [
+        "Did the 60-second reset between meetings - game changer.",
+        "Breathing 4-7-8 before sleep. Highly recommend.",
+        "Quiet Mode plus rain sounds. Perfect focus.",
+        "Remember: nothing to achieve here, just breathe."
+      ]
+    },
+    {
+      "id": "deep-dives", "label": "DEEP DIVES", "module": "discover", "members": 12,
+      "users": ["Victor", "Hana", "Leo"],
+      "lines": [
+        "Went down a timeline rabbit hole about GPU history. Fascinating.",
+        "Why-question of the day: why do batteries degrade?",
+        "Entity pages will be incredible once the intelligence layer lands.",
+        "Today I explored how container shipping changed trade."
+      ]
+    },
+    {
+      "id": "writers-room", "label": "WRITERS ROOM", "module": "create", "members": 10,
+      "users": ["Nora", "Adrian", "Sofia"],
+      "lines": [
+        "Drafted my CV headline with the Create tools - much sharper now.",
+        "Rule of thumb: one idea per paragraph.",
+        "Sharing my presentation outline here for feedback?",
+        "Writing tip: read it aloud. Always."
+      ]
+    },
+    {
+      "id": "travel-plans", "label": "TRAVEL PLANS", "module": "life", "members": 15,
+      "users": ["Daniel", "Fatima", "Greg"],
+      "lines": [
+        "Planning a Lisbon trip - hybrid schedule makes it easy.",
+        "Packing checklist saved in Life module. No more forgotten chargers.",
+        "Night trains are back and they are great.",
+        "Best travel month for Japan in your opinion?"
+      ]
+    },
+    {
+      "id": "introduce-yourself", "label": "INTRODUCE YOURSELF", "module": "personal", "members": 28,
+      "users": ["Kat", "Mo", "Ella", "Jan", "Priya"],
+      "lines": [
+        "Career changer from retail - happy to be here!",
+        "Learning Spanish and looking for ops roles. Hi everyone.",
+        "My profile finally feels like me, not a form.",
+        "Here for the calm design and the job radar honestly."
+      ]
+    }
+  ]
+}

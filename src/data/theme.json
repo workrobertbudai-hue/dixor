@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "colors": {
+    "bg": "#04070c",
+    "accent": "#57e6d9",
+    "accentAlt": "#7aa2ff",
+    "text": "#e8f1f2",
+    "textDim": "rgba(232,241,242,0.45)"
+  },
+  "typography": {
+    "family": "'Space Grotesk', sans-serif",
+    "tracking": "0.22em",
+    "uiSize": "11px"
+  },
+  "motion": {
+    "fadeMs": 1600,
+    "transitionMs": 1400
+  }
+}
