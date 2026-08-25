@@ -48,6 +48,7 @@ import { BackToCore } from '../navigation/back-to-core.js';
 import { NavigationManager } from '../navigation/navigation-manager.js';
 import { AppState } from '../state/app-state.js';
 import { ConnectionWeb } from '../visual/connections.js';
+import { Constellation } from '../visual/constellation.js';
 import { createCosmos } from '../visual/cosmos.js';
 
 export class App {
@@ -85,6 +86,9 @@ export class App {
 
     this.nodes = new NodeManager(this.scene);
     this.registerUpdate((dt, t) => this.nodes.update(dt, t));
+
+    this.constellation = new Constellation(this.scene, this.stateStore);
+    this.registerUpdate((dt, t) => this.constellation.update(dt, t));
 
     this.connections = new ConnectionWeb(this.scene, this.nodes.nodes);
     this.registerUpdate((dt, t) =>

@@ -144,6 +144,14 @@ export class AppState {
     this.data[key] = val;
     this.save();
   }
+  /* ---- Constellation events ---- */
+
+  addConstellationStar(typeKey) {
+    const list = this.getKV('constellation', []);
+    list.push({ t: typeKey, at: Date.now() });
+    while (list.length > 120) list.shift();
+    this.setKV('constellation', list);
+  }
   getProfile() {
     return JSON.parse(JSON.stringify(this.data.profile));
   }
