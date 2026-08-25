@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import http from 'http';
+import { startJobsPoller } from './server/jobs-poller.mjs';
+import { JobsStore } from './server/jobs-store.mjs';
 import { Server } from 'socket.io';
 
 const PORT = process.env.PORT || 3001;
@@ -11,6 +13,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.get('/health', (req, res) => res.json({ ok: true }));
 app.use(express.static(path.join(__dirname, 'dist')));
+app.get('/api/jobs', (req, res) => res.json(JobsStore.data));
 
 const server = http.createServer(app);
 const io = new Server(server, {
