@@ -1,4 +1,4 @@
-﻿import * as THREE from 'three';
+import * as THREE from 'three';
 import { ModuleWorld } from '../world/module-world.js';
 
 const CAM_HOME_POS = new THREE.Vector3(0, 2.2, 14);
@@ -73,7 +73,7 @@ export class NavigationManager {
         ]);
         this.backButton.show();
 
-        const visits = this.app.state.recordEnter(node.def.id);
+        const visits = this.app.stateStore.recordEnter(node.def.id);
         this.app.statusBar.setArea(
           node.def.label,
           node.def.accent,
@@ -111,7 +111,7 @@ export class NavigationManager {
       this.state = 'core';
       this.breadcrumbs.setTrail([{ id: 'core', label: 'CORE' }]);
       this.backButton.hide();
-      this.app.state.recordReturnToCore();
+      this.app.stateStore.recordReturnToCore();
       this.app.statusBar.setArea('CORE', null, 'PRESS / TO SEARCH');
       this.app.lockInteraction(false);
 
