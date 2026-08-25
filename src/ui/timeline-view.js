@@ -55,6 +55,7 @@ export class TimelineView {
   }
 
   async collect() {
+    /* LIVE_SAFE: ha nincs szerver, gyorsan tovabblepunk */
     var st = this.stateStore;
     var items = [];
 

@@ -143,8 +143,7 @@ export class App {
       this.employerView,
       this.interviewView,
       this.careerView,
-      this.exploreView,
-      this.timelineView
+      this.exploreView
     );
 
     this.breadcrumbs = new Breadcrumbs({
