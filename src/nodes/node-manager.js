@@ -8,7 +8,7 @@ const NODE_SCALE = 0.88;
 /**
  * NODE MANAGER - sajat sugar-savok + lassu paralya-korozes.
  * Minden node sajat tempoban aramlk a gyuru menten (finoman lathatoan),
- * es halvÃƒÆ’Ã‚Â¡nyan lebeg fel-le. A halo es a hitbox egyutt koveti.
+ * es halvÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡nyan lebeg fel-le. A halo es a hitbox egyutt koveti.
  */
 export class NodeManager {
   constructor(scene) {
