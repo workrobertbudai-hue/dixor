@@ -23,8 +23,8 @@ export class NavigationManager {
   }
 
   #closePanels() {
-    this.app.actionPanel.hide();
-    (this.app.panels ?? []).forEach((p) => p.close ? p.close() : null);
+    this.app.actionPanel?.hide?.();
+    (this.app.panels ?? []).forEach((p) => p?.close?.());
   }
 
   gotoModule(id) {
@@ -73,8 +73,8 @@ export class NavigationManager {
         ]);
         this.backButton.show();
 
-        const visits = this.app.stateStore.recordEnter(node.def.id);
-        this.app.statusBar.setArea(
+        const visits = this.app.stateStore?.recordEnter?.(node.def.id) ?? 0;
+        this.app.statusBar?.setArea?.(
           node.def.label,
           node.def.accent,
           'VISIT #' + visits + ' \u00B7 ESC \u2014 BACK TO CORE'
@@ -112,7 +112,7 @@ export class NavigationManager {
       this.breadcrumbs.setTrail([{ id: 'core', label: 'CORE' }]);
       this.backButton.hide();
       this.app.stateStore.recordReturnToCore();
-      this.app.statusBar.setArea('CORE', null, 'PRESS / TO SEARCH');
+      this.app.statusBar?.setArea?.('CORE', null, 'PRESS / TO SEARCH');
       this.app.lockInteraction(false);
 
       if (this.pending) {
@@ -123,3 +123,6 @@ export class NavigationManager {
     });
   }
 }
+
+
+

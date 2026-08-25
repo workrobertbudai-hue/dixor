@@ -124,7 +124,6 @@ export class App {
     this.lifeView = new LifeView({ stateStore: this.stateStore });
     this.createView = new CreateView({ stateStore: this.stateStore });
 
-    this.panels.push(this.timelineView);
     this.panels.push(
       this.jobBrowser,
       this.applicationsView,
