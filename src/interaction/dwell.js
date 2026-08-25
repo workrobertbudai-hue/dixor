@@ -1,11 +1,11 @@
-/**
+﻿/**
  * DWELL CONTROLLER v5.1 - tisztan lapozo mod (azonnali aktivalas).
  * + reset(): az app.js clear-guardja hivja panel/utazas kozben.
  */
 export class DwellController {
   constructor(app) {
     this.app = app;
-    this.enabled = app.stateStore.getKV('dwellOn', true) === true;
+    this.enabled = app.stateStore.getKV('dwellOn', false) === true;
     this.currentId = null;
 
     const wrap = document.createElement('div');

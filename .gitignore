@@ -4,3 +4,12 @@ dist/
 *.log
 .env
 .env.*
+# DIXOR local backups / development artifacts
+*.BEFORE_*
+*.bak
+*.BACKUP
+*.BEFORE_CONTEXT_COLLECTOR_INIT
+*.BEFORE_OFFLINE_STABLE
+STATE/
+DIXOR_STATE_LIVING_CONTEXT_v0.1.txt
+build-log.txt

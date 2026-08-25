@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+﻿import * as THREE from 'three';
 import { createScene } from './scene.js';
 import { createCamera } from './camera.js';
 import { createRenderer } from './renderer.js';
@@ -49,6 +49,8 @@ import { Breadcrumbs } from '../navigation/breadcrumbs.js';
 import { BackToCore } from '../navigation/back-to-core.js';
 import { NavigationManager } from '../navigation/navigation-manager.js';
 import { AppState } from '../state/app-state.js';
+import { ContextCollector } from '../context/context-collector.js';
+import { ContextInterpreter } from '../context/context-interpreter.js';
 import { ConnectionWeb } from '../visual/connections.js';
 import { Constellation } from '../visual/constellation.js';
 import { createCosmos } from '../visual/cosmos.js';
@@ -60,6 +62,8 @@ export class App {
     this.updatables = [];
     this.navLocked = false;
     this.stateStore = new AppState();
+    this.contextCollector = new ContextCollector(this.stateStore);
+    this.contextInterpreter = new ContextInterpreter();
     this.panels = [];
   }
 
@@ -223,6 +227,11 @@ export class App {
           if (def.id.endsWith(':community-chat')) { this.chatView.open(def.moduleId); return; }
           this.actionPanel.show(def, getModuleById(def.moduleId));
         } else {
+          if (def.id === 'timeline') {
+            this.timelineView.open();
+            return;
+          }
+
           this.navigation.enterModule(this.nodes.getById(def.id));
         }
       },
@@ -260,6 +269,12 @@ export class App {
     this.panels.push(this.dailyPulseView);
 
     setupRouter(this);
+
+    // CONTEXT ENGINE — initial live collection
+    this.context = this.contextCollector.collect();
+    this.interpretedContext = this.contextInterpreter.interpret(this.context);
+    console.log('[DIXOR CONTEXT]', this.context);
+    console.log('[DIXOR INTERPRETED CONTEXT]', this.interpretedContext);
 window.addEventListener('dx-star', (e) => {
       if (this.constellation) this.constellation.addEvent(e.detail);
     });
@@ -296,3 +311,6 @@ window.addEventListener('dx-star', (e) => {
     this.renderer.setSize(w, h);
   }
 }
+
+
+

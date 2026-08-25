@@ -10,6 +10,8 @@
     "server": "node server.js"
   },
   "dependencies": {
+    "@openrouter/agent": "^0.11.0",
+    "@openrouter/sdk": "^1.2.66",
     "express": "^5.2.1",
     "rss-parser": "^3.13.0",
     "socket.io": "^4.8.3",
@@ -17,7 +19,8 @@
     "three": "^0.170.0"
   },
   "devDependencies": {
-    "vite": "^6.0.0"
+    "vite": "^6.0.0",
+    "vitest": "^4.1.11"
   },
   "engines": {
     "node": ">=18"

@@ -1,4 +1,4 @@
-import { Router } from './router.js';
+﻿import { Router } from './router.js';
 
 function waitNav(app, cond, cb) {
   let n = 0;
@@ -43,6 +43,13 @@ export function setupRouter(app) {
       case 'create:presentations': app.createView.open('slides'); return true;
       case 'create:writing': app.createView.open('scratch'); return true;
       case 'create:images': app.createView.open('board'); return true;
+
+      case 'timeline:your-journey':
+      case 'timeline:history':
+      case 'timeline:temporal-context':
+      case 'timeline:personal-events':
+      case 'timeline:community-chat':
+        app.timelineView.open(); return true;
     }
     if (typeof fid === 'string' && fid.startsWith('explore:')) { app.exploreView.open(); return true; }
     const parts = fid.split(':');
@@ -113,7 +120,7 @@ export function setupRouter(app) {
             null);
         }
       } else {
-        app.panels.forEach((p) => { if (p.close) p.close(); });
+        (app.panels ?? []).forEach((p) => p?.close?.());
         app.entityView.close();
       }
       return;
@@ -160,3 +167,4 @@ export function setupRouter(app) {
 
   readyResolve();
 }
+

@@ -1,10 +1,11 @@
-const KNOWN = {
+﻿const KNOWN = {
   work: ["find-jobs","active-matches","open-to-me","job-radar","my-applications","my-profile","discover-my-skills"],
   wellbeing: ["60-second-reset","breathing","quiet-mode"],
   learn: ["languages","practice","progress"],
   personal: ["profile","history","saved","progress","preferences"],
   analyze: ["compare","research","understand","decision-support","what-if"],
-  discover: ["search","topics","explore","research","timeline"]
+  discover: ["search","topics","explore","research","why","what-if"],
+  timeline: ["your-journey","history","temporal-context","personal-events","community-chat"]
 };
 
 export const Router = {
@@ -75,3 +76,4 @@ export const Router = {
   /* kompatibilitas-nev: az app.js fid-kent hivja */
   fid(r) { return this.functionId(r); }
 };
+

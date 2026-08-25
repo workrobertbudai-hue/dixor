@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+﻿import * as THREE from 'three';
 import { createGlow } from '../visual/glow.js';
 
 /* anyag-segedek */
@@ -419,6 +419,144 @@ function buildCoreSphere(A) {
   };
 }
 
+
+/* TIMELINE - temporal orbit / idofolyam */
+
+function buildTemporalOrbit(A) {
+  const g = new THREE.Group();
+  const reactive = [];
+
+  const coreMat = stdMat(A, {
+    metalness: 0.92,
+    roughness: 0.18,
+    ei: 0.95,
+  });
+  reactive.push(coreMat);
+
+  const core = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(0.22, 1),
+    coreMat
+  );
+  g.add(core);
+
+  const coreGlow = createGlow(A, 1.15, 0.75);
+  g.add(coreGlow);
+
+  const orbitDefs = [
+    { rx: 0.72, rz: 1.12, y: 0.00, rot: 0.35, speed: 0.32, opacity: 0.62 },
+    { rx: 0.94, rz: 0.68, y: 0.04, rot: -0.58, speed: -0.24, opacity: 0.48 },
+    { rx: 1.12, rz: 0.86, y: -0.05, rot: 1.05, speed: 0.18, opacity: 0.38 },
+  ];
+
+  const tracks = [];
+  const events = [];
+
+  orbitDefs.forEach((d, i) => {
+    const points = [];
+    const segments = 96;
+
+    for (let j = 0; j < segments; j++) {
+      const a = (j / segments) * Math.PI * 2;
+      points.push(
+        new THREE.Vector3(
+          Math.cos(a) * d.rx,
+          d.y,
+          Math.sin(a) * d.rz
+        )
+      );
+    }
+
+    const geo = new THREE.BufferGeometry().setFromPoints(points);
+    const mat = new THREE.LineBasicMaterial({
+      color: A,
+      transparent: true,
+      opacity: d.opacity,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+
+    const track = new THREE.LineLoop(geo, mat);
+    track.rotation.y = d.rot;
+    track.userData = { speed: d.speed };
+    g.add(track);
+    tracks.push(track);
+
+    const eventMat = stdMat(A, {
+      metalness: 0.75,
+      roughness: 0.2,
+      ei: 0.95,
+    });
+    reactive.push(eventMat);
+
+    const event = new THREE.Mesh(
+      new THREE.SphereGeometry(i === 0 ? 0.065 : 0.05, 12, 12),
+      eventMat
+    );
+
+    event.userData = {
+      track,
+      rx: d.rx,
+      rz: d.rz,
+      y: d.y,
+      phase: i * 2.15,
+      speed: 0.55 + i * 0.16,
+    };
+
+    g.add(event);
+    events.push(event);
+  });
+
+  const scan = new THREE.Mesh(
+    new THREE.TorusGeometry(0.91, 0.012, 8, 80),
+    new THREE.MeshBasicMaterial({
+      color: A,
+      transparent: true,
+      opacity: 0.42,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    })
+  );
+
+  scan.rotation.x = Math.PI / 2;
+  g.add(scan);
+
+  return {
+    group: g,
+    reactive,
+    spin: 0.08,
+
+    customUpdate: (dt, t) => {
+      core.rotation.x += dt * 0.35;
+      core.rotation.y -= dt * 0.52;
+
+      coreGlow.material.opacity =
+        0.58 + Math.sin(t * 1.7) * 0.14;
+
+      tracks.forEach((track) => {
+        track.rotation.z += dt * track.userData.speed;
+      });
+
+      events.forEach((event) => {
+        const u = event.userData;
+        const a = t * u.speed + u.phase;
+
+        const local = new THREE.Vector3(
+          Math.cos(a) * u.rx,
+          u.y + Math.sin(t * 1.3 + u.phase) * 0.055,
+          Math.sin(a) * u.rz
+        );
+
+        local.applyQuaternion(u.track.quaternion);
+        event.position.copy(local);
+      });
+
+      scan.rotation.z += dt * 0.45;
+      scan.material.opacity =
+        0.34 + Math.sin(t * 1.4) * 0.10;
+    },
+  };
+}
+
 /* regisztracio */
 
 export const BUILDERS = {
@@ -431,6 +569,7 @@ export const BUILDERS = {
   'scatter-field': buildScatterField,
   'faceted-crystal': buildFacetedCrystal,
   'core-sphere': buildCoreSphere,
+  'temporal-orbit': buildTemporalOrbit,
 };
 
 export function createVisual(def) {
@@ -453,3 +592,4 @@ export function createVisual(def) {
     isHovered: false, scaleCur: 1, pulse: 0,
   };
 }
+
