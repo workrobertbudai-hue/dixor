@@ -221,11 +221,9 @@ export class App {
           if (def.id === 'work:interview-preparation') { Router.push({view:'module',module:'work',fn:'interview-preparation'}); this.interviewView.open(); return; }
           if (def.id === 'work:employer-insight') { Router.push({view:'module',module:'work',fn:'employer-insight'}); this.employerView.open(); return; }
           if (def.id.startsWith('explore:') && def.id !== 'explore:community-chat') { Router.push({view:'module',module:'explore'}); this.exploreView.open(); return; }
-          if (def.moduleId === 'timeline') { this.timelineView.open(); return; }
           if (def.id.endsWith(':community-chat')) { this.chatView.open(def.moduleId); return; }
           this.actionPanel.show(def, getModuleById(def.moduleId));
         } else {
-          if (def.id === 'timeline') { this.timelineView.open(); return; }
           this.navigation.enterModule(this.nodes.getById(def.id));
         }
       },
@@ -256,14 +254,14 @@ export class App {
       this.labels3d ? this.labels3d.update(dt, node) : null;
       this.dwellCtl ? this.dwellCtl.update(dt, node, this.mouse) : null;
     });
-
-    setupRouter(this);
-        this.dailyPulseView = new DailyPulseView({ stateStore: this.stateStore });
+    this.dailyPulseView = new DailyPulseView({ stateStore: this.stateStore });
     this.timelineView = new TimelineView({ stateStore: this.stateStore });
+
     this.panels.push(this.timelineView);
     this.panels.push(this.dailyPulseView);
 
-    window.addEventListener('dx-star', (e) => {
+    setupRouter(this);
+window.addEventListener('dx-star', (e) => {
       if (this.constellation) this.constellation.addEvent(e.detail);
     });
 
