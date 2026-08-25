@@ -1,4 +1,5 @@
-﻿import JOBS from '../data/jobs.json';
+import JOBS from '../data/jobs.json';
+import { fetchLiveJobs } from '../work/livejobs.js';
 
 const THRESHOLD = 78; // priority delivery: csak jelentoseges egyezesek (§24)
 
@@ -34,11 +35,14 @@ export class JobRadarView {
     setTimeout(() => { if (!this.isOpen) this.el.style.display = 'none'; }, 260);
   }
 
-  render() {
+  async render() {
+    const liveData = await fetchLiveJobs();
+    const liveJobs = liveData ? liveData.jobs : null;
     const active = this.stateStore.isRadarActive();
     const since = this.stateStore.radarSince();
-    const signals = JOBS.jobs
-      .filter((j) => j.matchScore >= THRESHOLD)
+    const baseList = liveJobs || JOBS.jobs;
+    const signals = baseList
+      .map(j=>({...j, matchScore: j.matchScore ?? 70})).filter((j) => j.matchScore >= THRESHOLD)
       .sort((a, b) => b.matchScore - a.matchScore);
 
     const head = `

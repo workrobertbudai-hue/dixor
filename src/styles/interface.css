@@ -1,6 +1,6 @@
-/* ==== DIXOR INTERFACE â€” teljes stÃ­lusrÃ©teg ==== */
+﻿/* ==== DIXOR INTERFACE Ã¢â‚¬â€ teljes stÃƒÂ­lusrÃƒÂ©teg ==== */
 
-/* ---- Node cÃ­mke (tooltip) ---- */
+/* ---- Node cÃƒÂ­mke (tooltip) ---- */
 .dx-node-label {
   position: fixed;
   z-index: 20;
@@ -27,7 +27,7 @@
   color: var(--dx-text-dim);
 }
 
-/* ---- VilÃ¡gÃ¡tmenet fÃ¡tyla ---- */
+/* ---- VilÃƒÂ¡gÃƒÂ¡tmenet fÃƒÂ¡tyla ---- */
 .dx-veil {
   position: fixed;
   inset: 0;
@@ -93,7 +93,7 @@
 .dx-back.is-visible { opacity: 1; pointer-events: all; transform: none; }
 .dx-back:hover { border-color: rgba(87, 230, 217, 0.7); }
 
-/* ---- KeresÃ©s ---- */
+/* ---- KeresÃƒÂ©s ---- */
 .dx-search-btn {
   position: fixed;
   z-index: 30;
@@ -337,7 +337,7 @@
 .dx-job__transfer span { color: var(--dx-accent); letter-spacing: 0.2em; }
 .dx-job__transfer ul { list-style: none; display: inline; }
 .dx-job__transfer li { display: inline; }
-.dx-job__transfer li:not(:last-child)::after { content: " Â· "; }
+.dx-job__transfer li:not(:last-child)::after { content: " Ã‚Â· "; }
 
 .dx-job__foot { display: flex; justify-content: space-between; align-items: center; margin-top: 13px; }
 .dx-job__posted { font-size: 8px; letter-spacing: 0.18em; color: var(--dx-text-dim); }
@@ -1740,4 +1740,23 @@ body.dx-quiet .dx-presence { opacity: 0; }
 
 @media (max-width: 760px) {
   .dx-presence { left: 16px !important; top: 40px !important; }
+}
+/* ---- Live feed banner ---- */
+.dx-livebanner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 9px 12px;
+  border: 1px solid rgba(127, 227, 178, 0.35);
+  background: rgba(127, 227, 178, 0.05);
+  color: #7fe3b2;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+.dx-livebanner i {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #7fe3b2;
+  box-shadow: 0 0 10px #7fe3b2;
+  animation: dx-pulse-dot 1.6s ease infinite;
 }
