@@ -1802,3 +1802,40 @@ body.dx-quiet .dx-presence { opacity: 0; }
 }
 .dx-pulsebtn button:hover { border-color: rgba(87, 230, 217, 0.7); }
 body.dx-quiet .dx-pulsebtn { opacity: 0; }
+/* ---- Timeline (hianyzott blokk visszapótolva) ---- */
+.dx-tlbtn {
+  position: fixed;
+  right: 28px;
+  top: calc(50% + 210px);
+  z-index: 30;
+}
+.dx-tlbtn button {
+  width: 34px;
+  height: 34px;
+  background: rgba(6, 12, 18, 0.6);
+  border: 1px solid rgba(87, 230, 217, 0.25);
+  color: var(--dx-accent);
+  font-size: 15px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.2s ease;
+}
+.dx-tlbtn button:hover { border-color: rgba(87, 230, 217, 0.7); }
+body.dx-quiet .dx-tlbtn { opacity: 0; }
+
+.dx-timeline__scroll { margin-top: 12px; max-height: calc(100vh - 260px); overflow-y: auto; padding-right: 4px; }
+.dx-tlg h4 {
+  margin: 14px 0 6px;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  color: var(--dx-accent);
+  font-weight: 500;
+}
+.dx-timeline .dx-tl li { align-items: baseline; }
+.dx-timeline .dx-tl b { min-width: 38px; font-size: 8.5px; color: var(--dx-text-dim); }
+.dx-timeline .dx-tl i {
+  font-style: normal;
+  color: var(--c, var(--dx-accent));
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}

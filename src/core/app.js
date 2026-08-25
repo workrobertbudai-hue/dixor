@@ -124,6 +124,7 @@ export class App {
     this.lifeView = new LifeView({ stateStore: this.stateStore });
     this.createView = new CreateView({ stateStore: this.stateStore });
 
+    this.panels.push(this.timelineView);
     this.panels.push(
       this.jobBrowser,
       this.applicationsView,
@@ -257,6 +258,7 @@ export class App {
     setupRouter(this);
         this.dailyPulseView = new DailyPulseView({ stateStore: this.stateStore });
     this.timelineView = new TimelineView({ stateStore: this.stateStore });
+    this.panels.push(this.timelineView);
     this.panels.push(this.dailyPulseView);
 
     window.addEventListener('dx-star', (e) => {
