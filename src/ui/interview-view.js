@@ -118,6 +118,7 @@ export class InterviewView {
         cur.last = Date.now();
         store[b.dataset.practice] = cur;
         this.stateStore.setKV('interviewPractice', store);
+        window.dispatchEvent(new CustomEvent('dx-star', { detail: 'INTERVIEW_PRAC' }));
         this.render();
       }));
 

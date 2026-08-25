@@ -17,6 +17,7 @@ import { OrbitController } from '../interaction/orbit.js';
 import { SoundSystem } from '../audio/sound.js';
 import { DwellController } from '../interaction/dwell.js';
 import { NodeLabels3D } from '../ui/node-labels-3d.js';
+import { DailyPulseView } from '../ui/daily-pulse-view.js';
 import { NodeLabel } from '../ui/node-label.js';
 import { WelcomeScreen } from '../ui/welcome-screen.js';
 import { SearchInterface } from '../ui/search-interface.js';
@@ -253,6 +254,23 @@ export class App {
     });
 
     setupRouter(this);
+        this.dailyPulseView = new DailyPulseView({ stateStore: this.stateStore });
+    this.panels.push(this.dailyPulseView);
+
+    window.addEventListener('dx-star', (e) => {
+      if (this.constellation) this.constellation.addEvent(e.detail);
+    });
+
+    let dpTries = 0;
+    const dpWatch = () => {
+      dpTries++;
+      if (dpTries > 45) return;
+      if (this.welcome && this.welcome.isOpen) { setTimeout(dpWatch, 1000); return; }
+      if (!this.navigation || this.navigation.state !== 'core') { setTimeout(dpWatch, 2000); return; }
+      this.dailyPulseView.maybeAutoOpen();
+    };
+    setTimeout(dpWatch, 3500);
+
     window.addEventListener('resize', () => this.onResize());
     this.renderer.setAnimationLoop(() => this.tick());
   }

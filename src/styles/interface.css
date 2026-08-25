@@ -1760,3 +1760,45 @@ body.dx-quiet .dx-presence { opacity: 0; }
   box-shadow: 0 0 10px #7fe3b2;
   animation: dx-pulse-dot 1.6s ease infinite;
 }
+/* ---- Daily Pulse ---- */
+.dx-pulse__streak {
+  margin-top: 14px;
+  padding: 16px 14px;
+  text-align: center;
+  border: 1px solid rgba(255, 212, 121, 0.4);
+  background: rgba(255, 212, 121, 0.05);
+}
+.dx-pulse__streak b {
+  display: block;
+  font-size: 19px;
+  letter-spacing: 0.18em;
+  color: #ffd479;
+  font-weight: 600;
+}
+.dx-pulse__streak span {
+  display: block;
+  margin-top: 5px;
+  font-size: 8.5px;
+  letter-spacing: 0.24em;
+  color: var(--dx-text-dim);
+}
+
+.dx-pulsebtn {
+  position: fixed;
+  right: 28px;
+  top: calc(50% + 166px);
+  z-index: 30;
+}
+.dx-pulsebtn button {
+  width: 34px;
+  height: 34px;
+  background: rgba(6, 12, 18, 0.6);
+  border: 1px solid rgba(87, 230, 217, 0.25);
+  color: var(--dx-accent);
+  font-size: 15px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.2s ease;
+}
+.dx-pulsebtn button:hover { border-color: rgba(87, 230, 217, 0.7); }
+body.dx-quiet .dx-pulsebtn { opacity: 0; }

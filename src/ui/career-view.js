@@ -133,6 +133,7 @@ export class CareerView {
         else arr.splice(idx, 1);
         st[this.pathId] = arr;
         this.stateStore.setKV('careerProgress', st);
+        window.dispatchEvent(new CustomEvent('dx-star', { detail: 'CAREER_STEP' }));
         this.render();
       }));
 
