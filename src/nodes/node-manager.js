@@ -5,10 +5,23 @@ import { createGlow } from '../visual/glow.js';
 
 const NODE_SCALE = 0.88;
 
+/* KLASZTER-TERKEP: logikus csoportok, nagy tavolsagokkal */
+const POS_BY_ID = {
+  work:      { x: 14,  z: 5 },
+  life:      { x: 15.5,z: -2 },
+  create:    { x: 12,  z: -8 },
+  learn:     { x: -8,  z: 13 },
+  discover:  { x: -14, z: 7 },
+  explore:   { x: -16, z: -1 },
+  analyze:   { x: -12, z: -8 },
+  wellbeing: { x: -4,  z: -16 },
+  personal:  { x: 5,   z: -17 },
+  timeline:  { x: 11,  z: -13 },
+};
+
 /**
- * NODE MANAGER - sajat sugar-savok + lassu paralya-korozes.
- * Minden node sajat tempoban aramlk a gyuru menten (finoman lathatoan),
- * es halvÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡nyan lebeg fel-le. A halo es a hitbox egyutt koveti.
+ * NODE MANAGER - klaszter-formacio: harom atlathato csoport,
+ * minden node sajat helye korul lassan kooroz (finom elet).
  */
 export class NodeManager {
   constructor(scene) {
@@ -20,28 +33,21 @@ export class NodeManager {
   }
 
   #build() {
-    const n = MODULE_LIST.length;
-
-    const RADII = [9.0, 7.0, 8.3, 7.2, 8.5, 7.1, 8.2, 9.5, 7.9];
-
     MODULE_LIST.forEach((def, i) => {
       const node = createVisual(def);
 
-      /* palya-parameterek */
+      const base = POS_BY_ID[def.id] || { x: Math.sin(i) * 10, z: Math.cos(i) * 10 };
       node.orbit = {
-        angle: (i / n) * Math.PI * 2,
-        radius: RADII[i % RADII.length],
-        speed: 0.024 + (i % 4) * 0.007,   /* rad/s - teljes kor kb. 3-6 perc */
-        baseY: Math.sin(i * 2.1) * 0.55,
-        bobPh: i * 1.37,
-        bobAmp: 0.14,
+        angle: Math.random() * Math.PI * 2,
+        cx: base.x,
+        cz: base.z,
+        r: 1.1,
+        speed: 0.06 + Math.random() * 0.04,
+        bobPh: Math.random() * Math.PI * 2,
+        bobAmp: 0.16,
       };
 
-      node.group.position.set(
-        Math.sin(node.orbit.angle) * node.orbit.radius,
-        node.orbit.baseY,
-        Math.cos(node.orbit.angle) * node.orbit.radius
-      );
+      node.group.position.set(base.x, Math.sin(i * 1.7) * 0.25, base.z);
 
       node.hitbox.userData.nodeRef = node;
       node.group.add(node.hitbox);
@@ -61,12 +67,12 @@ export class NodeManager {
 
   update(dt, t) {
     for (const n of this.nodes) {
-      /* paralya-korozes */
-      n.orbit.angle += dt * n.orbit.speed;
+      const o = n.orbit;
+      o.angle += dt * o.speed;
       n.group.position.set(
-        Math.sin(n.orbit.angle) * n.orbit.radius,
-        n.orbit.baseY + Math.sin(t * 0.6 + n.orbit.bobPh) * n.orbit.bobAmp,
-        Math.cos(n.orbit.angle) * n.orbit.radius
+        o.cx + Math.cos(o.angle) * o.r,
+        Math.sin(t * 0.6 + o.bobPh) * o.bobAmp,
+        o.cz + Math.sin(o.angle) * o.r
       );
 
       n.group.rotation.y += dt * n.spin;

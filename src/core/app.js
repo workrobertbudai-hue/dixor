@@ -221,9 +221,11 @@ export class App {
           if (def.id === 'work:interview-preparation') { Router.push({view:'module',module:'work',fn:'interview-preparation'}); this.interviewView.open(); return; }
           if (def.id === 'work:employer-insight') { Router.push({view:'module',module:'work',fn:'employer-insight'}); this.employerView.open(); return; }
           if (def.id.startsWith('explore:') && def.id !== 'explore:community-chat') { Router.push({view:'module',module:'explore'}); this.exploreView.open(); return; }
+          if (def.moduleId === 'timeline') { this.timelineView.open(); return; }
           if (def.id.endsWith(':community-chat')) { this.chatView.open(def.moduleId); return; }
           this.actionPanel.show(def, getModuleById(def.moduleId));
         } else {
+          if (def.id === 'timeline') { this.timelineView.open(); return; }
           this.navigation.enterModule(this.nodes.getById(def.id));
         }
       },
