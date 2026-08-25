@@ -18,6 +18,7 @@ import { SoundSystem } from '../audio/sound.js';
 import { DwellController } from '../interaction/dwell.js';
 import { NodeLabels3D } from '../ui/node-labels-3d.js';
 import { DailyPulseView } from '../ui/daily-pulse-view.js';
+import { TimelineView } from '../ui/timeline-view.js';
 import { NodeLabel } from '../ui/node-label.js';
 import { WelcomeScreen } from '../ui/welcome-screen.js';
 import { SearchInterface } from '../ui/search-interface.js';
@@ -142,7 +143,8 @@ export class App {
       this.employerView,
       this.interviewView,
       this.careerView,
-      this.exploreView
+      this.exploreView,
+      this.timelineView
     );
 
     this.breadcrumbs = new Breadcrumbs({
@@ -255,6 +257,7 @@ export class App {
 
     setupRouter(this);
         this.dailyPulseView = new DailyPulseView({ stateStore: this.stateStore });
+    this.timelineView = new TimelineView({ stateStore: this.stateStore });
     this.panels.push(this.dailyPulseView);
 
     window.addEventListener('dx-star', (e) => {
